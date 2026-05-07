@@ -1,0 +1,587 @@
+---
+---
+
+<main class="container">
+                <img id="logo" src="assets/img/picture3_new2.png" />
+                <h1>Ficha de Pre Matrícula - Año 2027</h1>
+                <h3>Liceo San José del Carmen</h3>
+                <p class="intro">
+                        Completa este formulario para iniciar el proceso de pre-matrícula.
+                        Los campos con (<span class="required">*</span>) son obligatorios.
+                </p>
+                <form id="formPrematricula">
+                        <div class="form-grid">
+                                <label>Selecciona un curso a prematricular:<span class="required">*</span></label>
+                                <select name="cursoMatricula" id="curso" required>
+                                        <option value="" selected disabled>Seleccione un curso...</option>
+                                        <option value="Pre-Kinder">PreKinder</option>
+                                        <option value="Kinder">Kinder</option>
+                                        <option value="1° Básico">1° Básico</option>
+                                        <option value="2° Básico">2° Básico</option>
+                                        <option value="3° Básico">3° Básico</option>
+                                        <option value="4° Básico">4° Básico</option>
+                                        <option value="5° Básico">5° Básico</option>
+                                        <option value="6° Básico">6° Básico</option>
+                                        <option value="7° Básico">7° Básico</option>
+                                        <option value="8° Básico">8° Básico</option>
+                                        <option value="1° Medio">1° Medio</option>
+                                        <option value="2° Medio">2° Medio</option>
+                                        <option value="3° Medio">3° Medio</option>
+                                        <option value="4° Medio">4° Medio</option>
+                                </select>
+                        </div>
+                        <!-- 1. Datos del Alumno -->
+                        <section>
+                                <h2>1. Datos del Alumno</h2>
+                                <div class="form-grid">
+                                        <label>RUN (Alumno):<span class="required">*</span> <input type="text"
+                                                        name="rutAlumno" id="rutAlumno" data-tipo="rut"
+                                                        placeholder="Ej. 12.345.678-9" required></label>
+                                        <label>Nombres:<span class="required">*</span><input type="text"
+                                                        name="nombresAlumno" id="nombresAlumno"
+                                                        placeholder="Ej. Juan Pedro" required
+                                                        aria-required="true"></label>
+                                        <label>Apellido Paterno:<span class="required">*</span> <input type="text"
+                                                        name="apellidoPaterno" id="apellidoPaterno"
+                                                        placeholder="Ej. Pérez" required></label>
+                                        <label>Apellido Materno:<span class="required">*</span> <input type="text"
+                                                        name="apellidoMaterno" id="apellidoMaterno"
+                                                        placeholder="Ej. Rodríguez" required></label>
+                                        <label>Fecha de Nacimiento:<span class="required">*</span> <input type="date" id="fechaNacimiento"
+                                                        name="fechaNacimiento" required></label>
+                                        <label>Edad:<span class="required">*</span> <input type="number" id="edad" name="edad"
+                                                        min="1" placeholder="Ingrese fecha nacimiento" disabled
+                                                        required></label>
+                                        <label>Sexo:<span class="required">*</span>
+                                                <select name="sexo" required>
+                                                        <option value="" selected disabled>Seleccione una
+                                                                opción...
+                                                        </option>
+                                                        <option value="M">Masculino</option>
+                                                        <option value="F">Femenino</option>
+                                                </select>
+                                        </label>
+                                        <label for="nacionalidad">Nacionalidad:<span class="required">*</span>
+                                                <select name="nacionalidad" id="nacionalidad" required>
+                                                        <option value="" selected name="nacionalidad" disabled>
+                                                                Seleccione
+                                                                nacionalidad...</option>
+                                                        <option value="Chile">Chile</option>
+                                                        <option value="Argentina">Argentina</option>
+                                                        <option value="Bolivia">Bolivia</option>
+                                                        <option value="Brasil">Brasil</option>
+                                                        <option value="Colombia">Colombia</option>
+                                                        <option value="Ecuador">Ecuador</option>
+                                                        <option value="Paraguay">Paraguay</option>
+                                                        <option value="Peru">Peru</option>
+                                                        <option value="Uruguay">Uruguay</option>
+                                                        <option value="Venezuela">Venezuela</option>
+                                                        <option value="Costa Rica">Costa Rica</option>
+                                                        <option value="El Salvador">El Salvador</option>
+                                                        <option value="Haiti">Haiti</option>
+                                                        <option value="Otro">Otra(especificar)</option>
+                                                </select>
+                                                <div id="otraNacionalidadContainer"
+                                                        style="display: none; margin-top: 10px;">
+                                                        <label for="otraNacionalidad"> Especifique
+                                                                nacionalidad</label>
+                                                        <input type="text" id="otraNacionalidad" name="otraNacionalidad"
+                                                                placeholder="Ingrese su nacionalidad">
+                                                </div>
+                                        </label>
+                                        <label>Dirección:<span class="required">*</span> <input type="text"
+                                                        name="domicilio"
+                                                        placeholder="Ej. Villa Nelson Cabrera, calle principal, #123"
+                                                        required></label>
+                                        <label>Comuna:<span class="required">*</span> <select name="comuna" required>
+                                                        <option value="" selected disabled>Seleccione una Comuna...
+                                                        </option>
+                                                        <option value="Codegua">Codegua</option>
+                                                        <option value="Coinco">Coinco</option>
+                                                        <option value="Coltauco">Coltauco</option>
+                                                        <option value="Doñihue">Doñihue</option>
+                                                        <option value="Graneros">Graneros</option>
+                                                        <option value="Las Cabras">Las Cabras</option>
+                                                        <option value="Machalí">Machalí</option>
+                                                        <option value="Malloa">Malloa</option>
+                                                        <option value="Mostazal">Mostazal</option>
+                                                        <option value="Olivar">Olivar</option>
+                                                        <option value="Peumo">Peumo</option>
+                                                        <option value="Pichidegua">Pichideguao</option>
+                                                        <option value="Quinta de Tilcoco">Quinta de Tilcoco</option>
+                                                        <option value="Rancagua">Rancagua</option>
+                                                        <option value="Rengo">Rengo</option>
+                                                        <option value="Requínoa">Requínoa</option>
+                                                        <option value="San Vicente de Tagua Tagua">San Vicente de Tagua
+                                                                Tagua
+                                                        </option>
+                                                        <option value="La Estrella">La Estrella</option>
+                                                        <option value="Litueche">Litueche</option>
+                                                        <option value="Marchigüe">Marchigüe</option>
+                                                        <option value="Navidad">Navidad</option>
+                                                        <option value="Paredones">Paredones</option>
+                                                        <option value="Pichilemu">Pichilemu</option>
+                                                        <option value="Chépica">Chépica</option>
+                                                        <option value="Chimbarongo">Chimbarongo</option>
+                                                        <option value="Lolol">Lolol</option>
+                                                        <option value="Nancagua">Nancagua</option>
+                                                        <option value="Palmilla">Palmilla</option>
+                                                        <option value="Peralillo">Peralillo</option>
+                                                        <option value="Placilla">Placilla</option>
+                                                        <option value="Pumanque">Pumanque</option>
+                                                        <option value="San Fernando">San Fernando</option>
+                                                        <option value="Santa Cruz">Santa Cruz</option>
+                                                </select></label>
+                                        <label>Región:<span class="required">*</span> <input type="text" name="region"
+                                                        value="Libertador Bernardo O'Higgins" disabled></label>
+                                        <label>Vive con:<span class="required">*</span> <select name="viveCon"
+                                                        id="viveCon" required>
+                                                        <option value="" selected disabled>Seleccione una opción...
+                                                        </option>
+                                                        <option value="Madre">Madre</option>
+                                                        <option value="Padre">Padre</option>
+                                                        <option value="Ambos">Ambos (Padre y Madre)</option>
+                                                        <option value="Otro">Otro (Especificar)</option>
+                                                </select>
+                                                <div id="otraViveconContainer" style="display: none; margin-top: 10px;">
+                                                        <label for="otraVivecon"> Especifique con quien vive</label>
+                                                        <input type="text" id="otraVivecon" name="otraVivecon"
+                                                                placeholder="Ingrese con quien vive">
+                                                </div>
+                                        </label>
+                                        <label>¿Pertenece a algún programa social?:<span class="required">*</span>
+                                                <select name="programaSocial" id="programaSocial">
+                                                        <option value="" selected disabled>Seleccione una opción...
+                                                        </option>
+                                                        <option value="Si">Si</option>
+                                                        <option value="No">No</option>
+                                                </select>
+                                                <div id="otraProgramaSocialContainer"
+                                                        style="display: none; margin-top: 10px;">
+                                                        <label for="otraProgramaSocial"> Especifique el programa
+                                                                social</label>
+                                                        <input type="text" id="otraProgramaSocial"
+                                                                name="otraProgramaSocial"
+                                                                placeholder="Ingrese el programa social">
+                                                </div>
+                                        </label>
+                                        <label>¿Pertenece a alguna etnia?:<span class="required">*</span> <select
+                                                        name="etnia" id="etnia" required>
+                                                        <option value="" selected disabled>Seleccione una opción...
+                                                        </option>
+                                                        <option value="Si">Si</option>
+                                                        <option value="No">No</option>
+                                                </select>
+                                                <div id="otraEtniaContainer" style="display: none; margin-top: 10px;">
+                                                        <label for="otraEtnia"> Especifique la etnia</label>
+                                                        <input type="text" id="otraEtnia" name="otraEtnia"
+                                                                placeholder="Ingrese la etnia">
+                                                </div>
+                                        </label>
+                                        <label>¿Ha repetido algún curso?:<span class="required">*</span> <select
+                                                        name="repiteCurso" id="repiteCurso" required>
+                                                        <option value="" selected disabled>Seleccione una opción...
+                                                        </option>
+                                                        <option value="Ninguno">Ninguno</option>
+                                                        <option value="Pre-Kinder">Pre-Kinder</option>
+                                                        <option value="Kinder">Kinder</option>
+                                                        <option value="1°Básico">1°Básico</option>
+                                                        <option value="2°Básico">2°Básico</option>
+                                                        <option value="3°Básico">3°Básico</option>
+                                                        <option value="4°Básico">4°Básico</option>
+                                                        <option value="5°Básico">5°Básico</option>
+                                                        <option value="6°Básico">6°Básico</option>
+                                                        <option value="7°Básico">7°Básico</option>
+                                                        <option value="8°Básico">8°Básico</option>
+                                                        <option value="1°Medio">1°Medio</option>
+                                                        <option value="2°Medio">2°Medio</option>
+                                                        <option value="3°Medio">3°Medio</option>
+                                                        <option value="4°Medio">4°Medio</option>
+                                                </select></label>
+                                        <label>¿Opta a clase de religión?:<span class="required">*</span> <select
+                                                        name="claseReligion" id="claseReligion">
+                                                        <option value="" selected disabled>Seleccione una opción...
+                                                        </option>
+                                                        <option value="Si">Si</option>
+                                                        <option value="No">No</option>
+                                                </select></label>
+                                        <label>Colegio de procedencia:<span class="required">*</span> <select
+                                                        name="colegioProcedencia" id="colegioProcedencia" required>
+                                                        <option value="" selected disabled>Seleccione una opción...
+                                                        </option>
+                                                        <option value="Liceo San José del Carmen">Liceo San José del
+                                                                Carmen
+                                                        </option>
+                                                        <option value="Escuela de Lihueimo">Escuela de Lihueimo</option>
+                                                        <option value="Escuela de Valle Hermoso">Escuela de Valle
+                                                                Hermoso
+                                                        </option>
+                                                        <option value="Escuela de Lenguaje Arbol">Escuela de Lenguaje
+                                                                Arbol
+                                                        </option>
+                                                        <option value="Escuela de Lenguaje Alun">Escuela de Lenguaje
+                                                                Alun
+                                                        </option>
+                                                        <option value="Escuela Jorge Errázuriz">Escuela Jorge Errázuriz
+                                                        </option>
+                                                        <option value="Escuela Margot Loyola Palacios">Escuela Margot
+                                                                Loyola
+                                                                Palacios</option>
+                                                        <option value="Escuela Rebeca Cádiz Valenzuela">Escuela Rebeca
+                                                                Cádiz
+                                                                Valenzuela</option>
+                                                        <option value="Escuela Santa Matilde">Escuela Santa Matilde
+                                                        </option>
+                                                        <option value="Otro">Otro (Especificar)</option>
+                                                </select>
+                                                <div id="otroColegioContainer" style="display: none; margin-top: 10px;">
+                                                        <label for="otroColegio">Especificar colegio:<span
+                                                                        class="required">*</span></label>
+                                                        <input type="text" id="otroColegio" name="otroColegio"
+                                                                placeholder="Especificar nombre del colegio" required>
+                                                </div>
+                                        </label>
+                                        <label>Alumno cuenta con: <span class="required">*</span> <select name="SAE"
+                                                        id="alumnoSae">
+                                                        <option value="" selected disabled>Elija una opción...</option>
+                                                        <option value="con SAE">Con SAE</option>
+                                                        <option value="sin SAE">Sin SAE</option>
+                                                        <option value="Alumno antiguo">Alumno antiguo</option>
+                                                </select></label>
+                                </div>
+                        </section>
+
+                        <!-- 2. Datos del Apoderado -->
+                        <section>
+                                <h2>2. Datos del Apoderado</h2>
+                                <div class="form-grid">
+                                        <label>RUN (Apoderado):<span class="required">*</span> <input type="text"
+                                                        name="rutApoderado" id="rutApoderado" data-tipo="rut"
+                                                        placeholder="Ej. 12.345.678-9" required></label>
+                                        <label>Nombre Completo:<span class="required">*</span> <input type="text"
+                                                        name="nombreApoderado" id="nombreApoderado"
+                                                        placeholder="Ej. María Elena Vargas Pino" required></label>
+                                        <label>Fecha de nacimiento:<span class="required">*</span> <input type="date"
+                                                        name="fechaNacApoderado" required></label>
+                                        <label>Teléfono de contacto:<span class="required">*</span> <input type="tel"
+                                                        name="telefonoApoderado" placeholder="Ej. 991234567"
+                                                        required></label>
+                                        <label>Correo electrónico:<span class="required">*</span> <input type="email"
+                                                        name="correoApoderado" placeholder="Ej. correo@dominio.cl"
+                                                        required></label>
+                                        <label>Domicilio:<span class="required">*</span> <input type="text"
+                                                        name="domicilioApoderado"
+                                                        placeholder="Ej. Villa Nelson Cabrera, Calle principal, #123"
+                                                        required></label>
+                                        <label>Comuna:<span class="required">*</span> <select name="comuna" required>
+                                                        <option value="" selected disabled>Seleccione una
+                                                                Comuna...
+                                                        </option>
+                                                        <option value="Codegua">Codegua</option>
+                                                        <option value="Coinco">Coinco</option>
+                                                        <option value="Coltauco">Coltauco</option>
+                                                        <option value="Doñihue">Doñihue</option>
+                                                        <option value="Graneros">Graneros</option>
+                                                        <option value="Las Cabras">Las Cabras</option>
+                                                        <option value="Machalí">Machalí</option>
+                                                        <option value="Malloa">Malloa</option>
+                                                        <option value="Mostazal">Mostazal</option>
+                                                        <option value="Olivar">Olivar</option>
+                                                        <option value="Peumo">Peumo</option>
+                                                        <option value="Pichidegua">Pichideguao</option>
+                                                        <option value="Quinta de Tilcoco">Quinta de Tilcoco
+                                                        </option>
+                                                        <option value="Rancagua">Rancagua</option>
+                                                        <option value="Rengo">Rengo</option>
+                                                        <option value="Requínoa">Requínoa</option>
+                                                        <option value="San Vicente de Tagua Tagua">San Vicente
+                                                                de Tagua
+                                                                Tagua</option>
+                                                        <option value="La Estrella">La Estrella</option>
+                                                        <option value="Litueche">Litueche</option>
+                                                        <option value="Marchigüe">Marchigüe</option>
+                                                        <option value="Navidad">Navidad</option>
+                                                        <option value="Paredones">Paredones</option>
+                                                        <option value="Pichilemu">Pichilemu</option>
+                                                        <option value="Chépica">Chépica</option>
+                                                        <option value="Chimbarongo">Chimbarongo</option>
+                                                        <option value="Lolol">Lolol</option>
+                                                        <option value="Nancagua">Nancagua</option>
+                                                        <option value="Palmilla">Palmilla</option>
+                                                        <option value="Peralillo">Peralillo</option>
+                                                        <option value="Placilla">Placilla</option>
+                                                        <option value="Pumanque">Pumanque</option>
+                                                        <option value="San Fernando">San Fernando</option>
+                                                        <option value="Santa Cruz">Santa Cruz</option>
+                                                </select></label>
+                                        <label>Escolaridad:<span class="required">*</span> <select
+                                                        name="escolaridadApoderado" id="escolaridadApoderado" required>
+                                                        <option value="" selected disabled>seleccione una
+                                                                opcion...
+                                                        </option>
+                                                        <option value="Básica Completa">Básica Completa</option>
+                                                        <option value="Básica Incompleta">Básica Incompleta
+                                                        </option>
+                                                        <option value="Media Completa">Media Completa</option>
+                                                        <option value="Media Incompleta">Media Incompleta
+                                                        </option>
+                                                        <option value="Superior Completa">Superior Completa
+                                                        </option>
+                                                        <option value="Superior Incompleta">Superior Incompleta
+                                                        </option>
+                                                        <option value="Técnico Profesional completa">Técnico
+                                                                Profesional
+                                                                completa</option>
+                                                        <option value="Técnico Profesional incompleta">Técnico
+                                                                Profesional incompleta</option>
+                                                </select></label>
+                                        <label>Profesión u oficio:<span class="required">*</span> <input type="text"
+                                                        name="profesionApoderado" id="profesionApoderado"
+                                                        placeholder="Ej. Ingeniera Civil" required></label>
+                                </div>
+                        </section>
+
+                        <!-- 3. Datos de los Padres -->
+                        <section>
+                                <h2>3. Datos de los Padres</h2>
+                                <div class="form-grid">
+                                        <label>RUN del Padre:<span class="required">*</span> <input type="text"
+                                                        name="rutPadre" data-tipo="rut"
+                                                        placeholder="Ej. 12.345.678-9"></label>
+                                        <label>Nombre del Padre:<span class="required">*</span> <input type="text"
+                                                        name="nombrePadre" id="nombrePadre"
+                                                        placeholder="Ej. Juan Ricardo Pérez Huerta"></label>
+                                        <label>Fecha de Nacimiento:<span class="required">*</span> <input type="date"
+                                                        name="fechaNacPadre"></label>
+                                        <label>Domicilio:<span class="required">*</span> <input type="text"
+                                                        name="domicilioPadre" placeholder="Ej. Av. Siempre Viva 123"
+                                                        required></label>
+                                        <label>Comuna:<span class="required">*</span> <select name="comunaPadre"
+                                                        id="comunaPadre" required>
+                                                        <option value="" selected disabled>Seleccione una
+                                                                Comuna...
+                                                        </option>
+                                                        <option value="Codegua">Codegua</option>
+                                                        <option value="Coinco">Coinco</option>
+                                                        <option value="Coltauco">Coltauco</option>
+                                                        <option value="Doñihue">Doñihue</option>
+                                                        <option value="Graneros">Graneros</option>
+                                                        <option value="Las Cabras">Las Cabras</option>
+                                                        <option value="Machalí">Machalí</option>
+                                                        <option value="Malloa">Malloa</option>
+                                                        <option value="Mostazal">Mostazal</option>
+                                                        <option value="Olivar">Olivar</option>
+                                                        <option value="Peumo">Peumo</option>
+                                                        <option value="Pichidegua">Pichideguao</option>
+                                                        <option value="Quinta de Tilcoco">Quinta de Tilcoco
+                                                        </option>
+                                                        <option value="Rancagua">Rancagua</option>
+                                                        <option value="Rengo">Rengo</option>
+                                                        <option value="Requínoa">Requínoa</option>
+                                                        <option value="San Vicente de Tagua Tagua">San Vicente
+                                                                de Tagua
+                                                                Tagua</option>
+                                                        <option value="La Estrella">La Estrella</option>
+                                                        <option value="Litueche">Litueche</option>
+                                                        <option value="Marchigüe">Marchigüe</option>
+                                                        <option value="Navidad">Navidad</option>
+                                                        <option value="Paredones">Paredones</option>
+                                                        <option value="Pichilemu">Pichilemu</option>
+                                                        <option value="Chépica">Chépica</option>
+                                                        <option value="Chimbarongo">Chimbarongo</option>
+                                                        <option value="Lolol">Lolol</option>
+                                                        <option value="Nancagua">Nancagua</option>
+                                                        <option value="Palmilla">Palmilla</option>
+                                                        <option value="Peralillo">Peralillo</option>
+                                                        <option value="Placilla">Placilla</option>
+                                                        <option value="Pumanque">Pumanque</option>
+                                                        <option value="San Fernando">San Fernando</option>
+                                                        <option value="Santa Cruz">Santa Cruz</option>
+                                                </select></label>
+                                        <label>Profesión u Oficio:<span class="required">*</span> <input type="text"
+                                                        name="profesionPadre"
+                                                        placeholder="Ej. Trabajador Agricola"></label>
+                                        <label>Escolaridad:<span class="required">*</span> <select
+                                                        name="escolaridadPadre" id="escolaridadPadre" required>
+                                                        <option value="" selected disabled>seleccione una
+                                                                opcion...
+                                                        </option>
+                                                        <option value="Básica Completa">Básica Completa</option>
+                                                        <option value="Básica Incompleta">Básica Incompleta
+                                                        </option>
+                                                        <option value="Media Completa">Media Completa</option>
+                                                        <option value="Media Incompleta">Media Incompleta
+                                                        </option>
+                                                        <option value="Superior Completa">Superior Completa
+                                                        </option>
+                                                        <option value="Superior Incompleta">Superior Incompleta
+                                                        </option>
+                                                        <option value="Técnico Profesional completa">Técnico
+                                                                Profesional
+                                                                completa</option>
+                                                        <option value="Técnico Profesional incompleta">Técnico
+                                                                Profesional incompleta</option>
+                                                </select></label>
+                                        <br>
+                                        <br>
+                                </div>
+                                <div class="form-grid">
+                                        <label>RUN de la Madre:<span class="required">*</span> <input type="text"
+                                                        name="rutMadre" data-tipo="rut"
+                                                        placeholder="Ej. 12.345.678-9"></label>
+                                        <label>Nombre de la Madre:<span class="required">*</span> <input type="text"
+                                                        name="nombreMadre" id="nombreMadre"
+                                                        placeholder="Ej. Maria Teresa Perez Huerta"></label>
+                                        <label>Fecha de Nacimiento:<span class="required">*</span> <input type="date"
+                                                        name="fechaNacMadre"></label>
+                                        <label>Domicilio:<span class="required">*</span> <input type="text"
+                                                        name="domicilioMadre" placeholder="Ej. Av. Siempre Viva 123"
+                                                        required></label>
+                                        <label>Comuna:<span class="required">*</span> <select name="comunaMadre"
+                                                        id="comunaMadre" required>
+                                                        <option value="" selected disabled>Seleccione una
+                                                                Comuna...
+                                                        </option>
+                                                        <option value="Codegua">Codegua</option>
+                                                        <option value="Coinco">Coinco</option>
+                                                        <option value="Coltauco">Coltauco</option>
+                                                        <option value="Doñihue">Doñihue</option>
+                                                        <option value="Graneros">Graneros</option>
+                                                        <option value="Las Cabras">Las Cabras</option>
+                                                        <option value="Machalí">Machalí</option>
+                                                        <option value="Malloa">Malloa</option>
+                                                        <option value="Mostazal">Mostazal</option>
+                                                        <option value="Olivar">Olivar</option>
+                                                        <option value="Peumo">Peumo</option>
+                                                        <option value="Pichidegua">Pichideguao</option>
+                                                        <option value="Quinta de Tilcoco">Quinta de Tilcoco
+                                                        </option>
+                                                        <option value="Rancagua">Rancagua</option>
+                                                        <option value="Rengo">Rengo</option>
+                                                        <option value="Requínoa">Requínoa</option>
+                                                        <option value="San Vicente de Tagua Tagua">San Vicente
+                                                                de Tagua
+                                                                Tagua</option>
+                                                        <option value="La Estrella">La Estrella</option>
+                                                        <option value="Litueche">Litueche</option>
+                                                        <option value="Marchigüe">Marchigüe</option>
+                                                        <option value="Navidad">Navidad</option>
+                                                        <option value="Paredones">Paredones</option>
+                                                        <option value="Pichilemu">Pichilemu</option>
+                                                        <option value="Chépica">Chépica</option>
+                                                        <option value="Chimbarongo">Chimbarongo</option>
+                                                        <option value="Lolol">Lolol</option>
+                                                        <option value="Nancagua">Nancagua</option>
+                                                        <option value="Palmilla">Palmilla</option>
+                                                        <option value="Peralillo">Peralillo</option>
+                                                        <option value="Placilla">Placilla</option>
+                                                        <option value="Pumanque">Pumanque</option>
+                                                        <option value="San Fernando">San Fernando</option>
+                                                        <option value="Santa Cruz">Santa Cruz</option>
+                                                </select></label>
+                                        <label>Profesión u Oficio:<span class="required">*</span> <input type="text"
+                                                        name="profesionMadre"
+                                                        placeholder="Ej. Trabajadora Agricola"></label>
+                                        <label>Escolaridad:<span class="required">*</span> <select
+                                                        name="escolaridadMadre" id="escolaridadMadre" required>
+                                                        <option value="" selected disabled>seleccione una
+                                                                opcion...
+                                                        </option>
+                                                        <option value="Básica Completa">Básica Completa</option>
+                                                        <option value="Básica Incompleta">Básica Incompleta
+                                                        </option>
+                                                        <option value="Media Completa">Media Completa</option>
+                                                        <option value="Media Incompleta">Media Incompleta
+                                                        </option>
+                                                        <option value="Superior Completa">Superior Completa
+                                                        </option>
+                                                        <option value="Superior Incompleta">Superior Incompleta
+                                                        </option>
+                                                        <option value="Técnico Profesional completa">Técnico
+                                                                Profesional
+                                                                completa</option>
+                                                        <option value="Técnico Profesional incompleta">Técnico
+                                                                Profesional incompleta</option>
+                                                </select></label>
+                                </div>
+                        </section>
+
+                        <!-- 4. Salud del Alumno -->
+                        <section>
+                                <h2>4. Salud del Alumno</h2>
+                                <div class="form-grid">
+                                        <label>¿Ha estado en tratamiento médico?:<span class="required">*</span>
+                                                <select id="tratamientoMedico" name="tratamientoMedico" required>
+                                                        <option value="" selected disabled>Seleccione una
+                                                                opcion...
+                                                        </option>
+                                                        <option value="Si">Si</option>
+                                                        <option value="No">No</option>
+                                                </select>
+                                                <div id="tratMedicoContainer" style="display: none; margin-top: 10px;">
+                                                        <label for="defTratMedico"> Especifique el
+                                                                tratamiento</label>
+                                                        <input type="text" id="defTratMed" name="defTratMed"
+                                                                placeholder="Ingrese el tratamiento" required>
+                                                </div>
+                                        </label>
+                                        <label>¿Pertenece a algun programa escolar?:<span class="required">*</span>
+                                                <select name="programaEscolar" id="programaEscolar" required>
+                                                        <option value="" selected disabled>Seleccione una
+                                                                opcion...
+                                                        </option>
+                                                        <option value="Si">Si</option>
+                                                        <option value="No">No</option>
+                                                </select>
+                                                <div id="programaEscolarContainer"
+                                                        style="display: none; margin-top: 10px;">
+                                                        <label for="defProgramaEscolar"> Especifique el
+                                                                programa</label>
+                                                        <input type="text" id="defProgramaEscolar"
+                                                                name="defProgramaEscolar"
+                                                                placeholder="Ingrese el programa" required>
+                                                </div>
+                                        </label>
+                                        <label>¿Posee antecedentes de trastornos de aprendizaje u otros?:<span
+                                                        class="required">*</span>
+                                                <input type="text" name="trastornos"></label>
+                                        <label>¿Es alérgico a medicamentos o alimentos?:<span class="required">*</span>
+                                                <input type="text" name="alergias"></label>
+                                        <label>¿Posee contraindicación para actividad física?:<span
+                                                        class="required">*</span> <input type="text"
+                                                        name="contraindicacion"></label>
+                                        <label>Previsión de Salud:<span class="required">*</span> <input type="text"
+                                                        name="prevision"></label>
+                                </div>
+                        </section>
+
+                        <!-- 5. Transporte Escolar -->
+                        <section>
+                                <h2>5. Transporte Escolar</h2>
+                                <div class="form-grid">
+                                        <label>¿Necesita movilización?:<span class="required">*</span> <input
+                                                        type="text" name="movilizacion"></label>
+                                </div>
+                        </section>
+
+                        <!-- 6. Apoderado Suplente -->
+                        <section>
+                                <h2>6. Apoderado Suplente</h2>
+                                <div class="form-grid">
+                                        <label>Nombre Completo:<span class="required">*</span> <input type="text"
+                                                        id="nombreSuplente" name="nombreSuplente"></label>
+                                        <label>RUN:<span class="required">*</span> <input type="text" name="rutSuplente"
+                                                        data-tipo="rut"></label>
+                                        <label>Parentesco:<span class="required">*</span> <input type="text"
+                                                        name="parentescoSuplente"></label>
+                                </div>
+                        </section>
+
+                        <button type="submit">Enviar formulario</button>
+                </form>
+        </main>
+      
+        
+        <script src="/scripts/formatearNombre.js"></script>
+        <script src="/scripts/script.js"></script>
+        <script src="/scripts/validarRut.js"></script>
