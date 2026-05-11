@@ -50,7 +50,7 @@
                                         <label>Fecha de Nacimiento:<span class="required">*</span> <input type="date" id="fechaNacimiento"
                                                         name="fechaNacimiento" required></label>
                                         <label>Edad:<span class="required">*</span> <input type="number" id="edad" name="edad"
-                                                        min="1" placeholder="Ingrese fecha nacimiento" disabled
+                                                        min="1" placeholder="Se calcula automaticamente" readonly
                                                         required></label>
                                         <label>Sexo:<span class="required">*</span>
                                                 <select name="sexo" required>
@@ -62,8 +62,8 @@
                                                 </select>
                                         </label>
                                         <label for="nacionalidad">Nacionalidad:<span class="required">*</span>
-                                                <select name="nacionalidad" id="nacionalidad" required>
-                                                        <option value="" selected name="nacionalidad" disabled>
+                                                <select name="nacionalidad" id="nacionalidad" required><option value="" selected name="nacionalidad" disabled>
+                                                        
                                                                 Seleccione
                                                                 nacionalidad...</option>
                                                         <option value="Chile">Chile</option>
@@ -521,7 +521,7 @@
                                                 <div id="tratMedicoContainer" style="display: none; margin-top: 10px;">
                                                         <label for="defTratMedico"> Especifique el
                                                                 tratamiento</label>
-                                                        <input type="text" id="defTratMed" name="defTratMed"
+                                                        <input type="text" id="defTratMedico" name="defTratMedico"
                                                                 placeholder="Ingrese el tratamiento" required>
                                                 </div>
                                         </label>
@@ -582,6 +582,4 @@
         </main>
       
         
-        <script src="/scripts/formatearNombre.js"></script>
-        <script src="/scripts/script.js"></script>
-        <script src="/scripts/validarRut.js"></script>
+        <script type="module" src="/scripts/script.js" is:inline></script>

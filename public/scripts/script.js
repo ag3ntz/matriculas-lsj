@@ -1,7 +1,9 @@
-console.log("script cargado");
+//console.log("script cargado");
+console.log("script.js cargado");
 
 import { inicializarFormateoNombres } from "./formatearNombre.js";
 import { limpiarRut, formatearRut, validarRut } from "./validarRut.js";
+import { validarCorreo } from "./validarCorreo.js";
 
 function toggleField(selectId, triggerValue, containerId, inputId) {
     const select = document.getElementById(selectId);
@@ -52,34 +54,63 @@ function configurarRut() {
 }
 
 function calcularEdad() {
-    const fechaNacInput = document.querySelector('input[name="fechaNacimiento"]');
-    const edadInput = document.querySelector('input[name="edad"]');
+    const fechaNacInput = document.getElementById("fechaNacimiento");
+    const edadInput = document.getElementById("edad");
 
     if (!fechaNacInput || !edadInput) return;
 
     fechaNacInput.addEventListener("change", () => {
         const fechaNac = new Date(fechaNacInput.value);
-        const hoy = new Date();
 
+        if (isNaN(fechaNac)) {
+            edadInput.value = "";
+            return;
+        }
+
+        const hoy = new Date();
         let edad = hoy.getFullYear() - fechaNac.getFullYear();
 
         if (
             hoy.getMonth() < fechaNac.getMonth() ||
             (hoy.getMonth() === fechaNac.getMonth() &&
-                hoy.getDate() < fechaNac.getDate())
+             hoy.getDate() < fechaNac.getDate())
         ) {
             edad--;
         }
 
-        edadInput.value = edad;
+        edadInput.value = edad >= 0 ? edad : "";
     });
 }
+//function calcularEdad() {
+    //const fechaNacInput = document.querySelector('input[name="fechaNacimiento"]');
+    //const edadInput = document.querySelector('input[name="edad"]');
+
+    //if (!fechaNacInput || !edadInput) return;
+
+    //fechaNacInput.addEventListener("change", () => {
+        //const fechaNac = new Date(fechaNacInput.value);
+        //const hoy = new Date();
+
+        //let edad = hoy.getFullYear() - fechaNac.getFullYear();
+
+        //if (
+            //hoy.getMonth() < fechaNac.getMonth() ||
+            //(hoy.getMonth() === fechaNac.getMonth() &&
+                //hoy.getDate() < fechaNac.getDate())
+        //) {
+        //    edad--;
+        //}
+
+        //edadInput.value = edad;
+    //});
+//}
 
  document.addEventListener("DOMContentLoaded", () => {
     console.log("DOM listo");
     configurarRut();
     calcularEdad();
     inicializarFormateoNombres();
+    validarCorreo();
 
     toggleField("nacionalidad", "Otro", "otraNacionalidadContainer", "otraNacionalidad");
     toggleField("viveCon", "Otro", "otraViveconContainer", "otraVivecon");
