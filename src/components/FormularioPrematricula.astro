@@ -62,8 +62,7 @@
                                                 </select>
                                         </label>
                                         <label for="nacionalidad">Nacionalidad:<span class="required">*</span>
-                                                <select name="nacionalidad" id="nacionalidad" required><option value="" selected name="nacionalidad" disabled>
-                                                        
+                                                <select name="nacionalidad" id="nacionalidad" required><option value="" selected disabled>
                                                                 Seleccione
                                                                 nacionalidad...</option>
                                                         <option value="Chile">Chile</option>
@@ -544,14 +543,41 @@
                                         </label>
                                         <label>¿Posee antecedentes de trastornos de aprendizaje u otros?:<span
                                                         class="required">*</span>
-                                                <input type="text" name="trastornos"></label>
+                                                <select name="trast_aprendizaje" id="trast_aprendizaje" required>
+                                                        <option value="" selected disabled> Seleccione una opción...</option>
+                                                        <option value="Sí">Si</option>
+                                                        <option value="No">No</option>
+                                                </select>
+                                        </label>                                                
                                         <label>¿Es alérgico a medicamentos o alimentos?:<span class="required">*</span>
-                                                <input type="text" name="alergias"></label>
-                                        <label>¿Posee contraindicación para actividad física?:<span
-                                                        class="required">*</span> <input type="text"
-                                                        name="contraindicacion"></label>
-                                        <label>Previsión de Salud:<span class="required">*</span> <input type="text"
-                                                        name="prevision"></label>
+                                                <select name="alergiaMed" id="alergiaMed" required>
+                                                        <option value="" selected disabled> Seleccione una opción...</option>
+                                                        <option value="Si">Si</option>
+                                                        <option value="No">No</option>
+                                                </select>
+                                        <div id="alergiaMedContainer" style="display: none; margin-top: 10px;">
+                                                <label for="defAlergiaMed"> Especifique alergia o remedio</label>
+                                                <input type="text" id="defAlergiaMed" name="defAlergiaMed" placeholder="Especifique la alergia aqui" required>
+                                        </div>
+                                        </label>
+                                        <label>¿Posee contraindicación médica para actividad física?:<span class="required">*</span> 
+                                                <select name="contraMedica" id="contraMedica" required>
+                                                        <option value="" selected disabled> Seleccione una opción...</option>
+                                                        <option value="Si">Si</option>
+                                                        <option value="No">No</option>
+                                                </select>
+                                                <div id="contraMedicaContainer" style="display: none; margin-top: 10px;">
+                                                        <label for="defContraMedica"> Especifique contraindicación Médica</label>
+                                                        <input type="text" id="defContraMedica" name="defContraMedica" placeholder="Especifique diagnostico aqui" required>
+                                                </div>
+                                        </label>
+                                        <label>Previsión de Salud:<span class="required">*</span> 
+                                                <select name="prevision" id="previsionSalud" required>
+                                                        <option value="" selected disabled> Seleccione una opción</option>
+                                                        <option value="FONASA">FONASA</option>
+                                                        <option value="ISAPRE">ISAPRE</option>
+                                                </select>
+                                </label>
                                 </div>
                         </section>
 
@@ -559,11 +585,20 @@
                         <section>
                                 <h2>5. Transporte Escolar</h2>
                                 <div class="form-grid">
-                                        <label>¿Necesita movilización?:<span class="required">*</span> <input
-                                                        type="text" name="movilizacion"></label>
+                                        <label>¿Necesita movilización?:<span class="required">*</span> 
+                                                <select name="movEscolar" id="movEscolar" required>
+                                                        <option value="" selected disabled> Seleccione una opción</option>
+                                                        <option value="Si">Si</option>
+                                                        <option value="No">No</option>
+                                                </select>
+                                                <div id="movEscolarContainer" style="display: none; margin-top: 10px;">
+                                                        <label for="defMovEscolar">Especifique Sector</label>
+                                                        <input type="text" id="defMovEscolar" name="defMovEscolar" placeholder="Especifique sector para movilización" required>
+                                                </div>
+                                        </label>
                                 </div>
                         </section>
-
+                        
                         <!-- 6. Apoderado Suplente -->
                         <section>
                                 <h2>6. Apoderado Suplente</h2>

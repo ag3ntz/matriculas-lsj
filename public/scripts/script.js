@@ -119,4 +119,7 @@ function calcularEdad() {
     toggleField("tratamientoMedico", "Si", "tratMedicoContainer", "defTratMedico");
     toggleField("programaEscolar", "Si", "programaEscolarContainer", "defProgramaEscolar");
     toggleField("colegioProcedencia", "Otro", "otroColegioContainer", "otroColegio");
+    toggleField("alergiaMed", "Si", "alergiaMedContainer","defAlergiaMed");
+    toggleField("contraMedica","Si","contraMedicaContainer","defContraMedica");
+    toggleField("movEscolar","Si","movEscolarContainer","defMovEscolar")
 });
