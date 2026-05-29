@@ -1,0 +1,28 @@
+---
+import InputField from "./InputField.astro";
+
+interface Props {
+  label: string;
+  name: string;
+  id?: string;
+  required?: boolean;
+  placeholder?: string;
+}
+
+const {
+  label,
+  name,
+  id = name,
+  required = false,
+  placeholder = "Ej. 12.345.678-9",
+} = Astro.props;
+---
+
+<InputField
+  {label}
+  {name}
+  {id}
+  {required}
+  {placeholder}
+  dataTipo="rut"
+/>

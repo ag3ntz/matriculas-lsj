@@ -1,0 +1,42 @@
+---
+interface Props {
+  label: string;
+  selectName: string;
+  inputName: string;
+  inputLabel: string;
+  inputPlaceholder?: string;
+  triggerValue: string;
+  options: Array<{ value: string; label: string }>;
+  required?: boolean;
+  inputRequired?: boolean;
+}
+
+const {
+  label,
+  selectName,
+  inputName,
+  inputLabel,
+  inputPlaceholder = "",
+  triggerValue,
+  options,
+  required = false,
+  inputRequired = false,
+} = Astro.props;
+
+const containerId = `${selectName}Container`;
+const inputId = `${selectName}Input`;
+---
+
+<label>
+  {label}{required && <span class="required">*</span>}
+  <select name={selectName} id={selectName} required={required}>
+    <option value="" selected disabled>Seleccione una opción...</option>
+    {options.map((o) => (
+      <option value={o.value}>{o.label}</option>
+    ))}
+  </select>
+  <div id={containerId} style="display: none; margin-top: 10px;">
+    <label for={inputId}>{inputLabel}{required && <span class="required">*</span>}</label>
+    <input type="text" id={inputId} name={inputName} placeholder={inputPlaceholder} required={inputRequired} />
+  </div>
+</label>

@@ -1,0 +1,29 @@
+---
+import SelectField from "./SelectField.astro";
+import { ESCOLARIDAD } from "../data/escolaridad.js";
+
+interface Props {
+  name: string;
+  id?: string;
+  required?: boolean;
+  label?: string;
+}
+
+const {
+  name,
+  id = name,
+  required = false,
+  label = "Escolaridad",
+} = Astro.props;
+
+const options = ESCOLARIDAD.map((e) => ({ value: e, label: e }));
+---
+
+<SelectField
+  {label}
+  {name}
+  {id}
+  {required}
+  options={options}
+  placeholder="Seleccione una opción..."
+/>

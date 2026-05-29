@@ -1,0 +1,16 @@
+export const NACIONALIDADES = [
+  { value: "Chile", label: "Chile" },
+  { value: "Argentina", label: "Argentina" },
+  { value: "Bolivia", label: "Bolivia" },
+  { value: "Brasil", label: "Brasil" },
+  { value: "Colombia", label: "Colombia" },
+  { value: "Ecuador", label: "Ecuador" },
+  { value: "Paraguay", label: "Paraguay" },
+  { value: "Peru", label: "Peru" },
+  { value: "Uruguay", label: "Uruguay" },
+  { value: "Venezuela", label: "Venezuela" },
+  { value: "Costa Rica", label: "Costa Rica" },
+  { value: "El Salvador", label: "El Salvador" },
+  { value: "Haiti", label: "Haiti" },
+  { value: "Otro", label: "Otra (especificar)" },
+];

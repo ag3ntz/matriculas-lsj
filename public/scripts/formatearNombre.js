@@ -28,7 +28,8 @@ export function inicializarFormateoNombres() {
                 "nombreApoderado",
                 "nombrePadre",
                 "nombreMadre",
-                "nombreSuplente"
+                "nombreSuplente",
+                "parentescoSuplente"
             ].includes(e.target.id)
         ) {
             e.target.value = e.target.value

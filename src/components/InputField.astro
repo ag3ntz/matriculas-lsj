@@ -1,0 +1,49 @@
+---
+interface Props {
+  label: string;
+  name: string;
+  id?: string;
+  type?: string;
+  required?: boolean;
+  placeholder?: string;
+  readonly?: boolean;
+  disabled?: boolean;
+  min?: number;
+  value?: string;
+  autoFormat?: boolean;
+  dataTipo?: string;
+}
+
+const {
+  label,
+  name,
+  id = name,
+  type = "text",
+  required = false,
+  placeholder,
+  readonly = false,
+  disabled = false,
+  min,
+  value,
+  autoFormat = false,
+  dataTipo,
+} = Astro.props;
+---
+
+<label>
+  {label}{required && <span class="required">*</span>}
+  <input
+    {type}
+    {name}
+    {id}
+    required={required}
+    placeholder={placeholder}
+    readonly={readonly}
+    disabled={disabled}
+    {min}
+    {value}
+    data-tipo={dataTipo}
+    aria-required={required || undefined}
+    class:list={{ "formato-nombre": autoFormat }}
+  />
+</label>

@@ -112,14 +112,14 @@ function calcularEdad() {
     inicializarFormateoNombres();
     validarCorreo();
 
-    toggleField("nacionalidad", "Otro", "otraNacionalidadContainer", "otraNacionalidad");
-    toggleField("viveCon", "Otro", "otraViveconContainer", "otraVivecon");
-    toggleField("programaSocial", "Si", "otraProgramaSocialContainer", "otraProgramaSocial");
-    toggleField("etnia", "Si", "otraEtniaContainer", "otraEtnia");
-    toggleField("tratamientoMedico", "Si", "tratMedicoContainer", "defTratMedico");
-    toggleField("programaEscolar", "Si", "programaEscolarContainer", "defProgramaEscolar");
-    toggleField("colegioProcedencia", "Otro", "otroColegioContainer", "otroColegio");
-    toggleField("alergiaMed", "Si", "alergiaMedContainer","defAlergiaMed");
-    toggleField("contraMedica","Si","contraMedicaContainer","defContraMedica");
-    toggleField("movEscolar","Si","movEscolarContainer","defMovEscolar")
+    toggleField("nacionalidad", "Otro", "nacionalidadContainer", "nacionalidadInput");
+    toggleField("viveCon", "Otro", "viveConContainer", "viveConInput");
+    toggleField("programaSocial", "Si", "programaSocialContainer", "programaSocialInput");
+    toggleField("etnia", "Si", "etniaContainer", "etniaInput");
+    toggleField("tratamientoMedico", "Si", "tratamientoMedicoContainer", "tratamientoMedicoInput");
+    toggleField("programaEscolar", "Si", "programaEscolarContainer", "programaEscolarInput");
+    toggleField("colegioProcedencia", "Otro", "colegioProcedenciaContainer", "colegioProcedenciaInput");
+    toggleField("alergiaMed", "Si", "alergiaMedContainer", "alergiaMedInput");
+    toggleField("contraMedica", "Si", "contraMedicaContainer", "contraMedicaInput");
+    toggleField("movEscolar", "Si", "movEscolarContainer", "movEscolarInput")
 });
