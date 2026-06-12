@@ -124,10 +124,16 @@ button {
     font-size: 1rem;
     cursor: pointer;
     width: 100%;
+    transition: background-color 0.3s ease;
 }
 
-button:hover {
+button:hover:not(:disabled) {
     background-color: #005fa3;
+}
+
+button:disabled {
+    background-color: #999;
+    cursor: not-allowed;
 }
 
 .rutFeedback {
@@ -194,4 +200,29 @@ button:hover {
     max-width: 150px;
     margin: 0 auto 20px;
     height: auto;
+}
+
+.input-error {
+    border: 2px solid #d32f2f !important;
+    box-shadow: 0 0 6px rgba(211, 47, 47, 0.3);
+}
+
+.error-summary {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 20px;
+    color: #b91c1c;
+    font-size: 0.95rem;
+}
+
+.error-item {
+    padding: 2px 0;
+}
+
+.correoFeedback,
+.telFeedback {
+    font-size: 0.9em;
+    margin-top: 4px;
 }

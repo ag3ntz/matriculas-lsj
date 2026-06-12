@@ -53,7 +53,7 @@ import {
         <CampoCondicional label="Nacionalidad" selectName="nacionalidad" inputName="otraNacionalidad" inputLabel="Especifique nacionalidad" inputPlaceholder="Ingrese su nacionalidad" triggerValue="Otro" options={NACIONALIDADES} required />
         <InputField label="Dirección" name="domicilio" required placeholder="Ej. Villa Nelson Cabrera, calle principal, #123" />
         <SelectorComuna name="comuna" required />
-        <InputField label="Región" name="region" value="Libertador Bernardo O'Higgins" disabled required />
+        <InputField label="Región" name="region" value="Libertador Bernardo O'Higgins" readonly required />
         <CampoCondicional label="Vive con" selectName="viveCon" inputName="otraVivecon" inputLabel="Especifique con quien vive" inputPlaceholder="Ingrese con quien vive" triggerValue="Otro" options={VIVE_CON} required />
         <CampoCondicional label="¿Pertenece a algún programa social?" selectName="programaSocial" inputName="otraProgramaSocial" inputLabel="Especifique el programa social" inputPlaceholder="Ingrese el programa social" triggerValue="Si" options={SI_NO} required />
         <CampoCondicional label="¿Pertenece a alguna etnia?" selectName="etnia" inputName="otraEtnia" inputLabel="Especifique la etnia" inputPlaceholder="Ingrese la etnia" triggerValue="Si" options={SI_NO} required />
@@ -74,7 +74,7 @@ import {
         <InputField label="Teléfono de contacto" name="telefonoApoderado" type="tel" required placeholder="Ej. 991234567" />
         <InputField label="Correo electrónico" name="correoApoderado" type="email" required placeholder="Ej. correo@dominio.cl" />
         <InputField label="Domicilio" name="domicilioApoderado" required placeholder="Ej. Villa Nelson Cabrera, Calle principal, #123" />
-        <SelectorComuna name="comuna" required />
+        <SelectorComuna name="comunaApoderado" required />
         <SelectorEscolaridad name="escolaridadApoderado" id="escolaridadApoderado" required />
         <InputField label="Profesión u oficio" name="profesionApoderado" id="profesionApoderado" required placeholder="Ej. Ingeniera Civil" />
       </div>
@@ -134,6 +134,8 @@ import {
         <InputField label="Parentesco" name="parentescoSuplente" placeholder="Ej: Hermano" autoFormat />
       </div>
     </section>
+
+    <div id="errorSummary" class="error-summary" style="display: none;" role="alert"></div>
 
     <button type="submit">Enviar formulario</button>
   </form>

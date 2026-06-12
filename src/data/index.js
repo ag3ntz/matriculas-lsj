@@ -5,8 +5,8 @@ export { COLEGIOS } from "./colegios.js";
 export { NACIONALIDADES } from "./nacionalidades.js";
 
 export const SEXO_OPTIONS = [
-  { value: "M", label: "Masculino" },
-  { value: "F", label: "Femenino" },
+  { value: "Masculino", label: "Masculino" },
+  { value: "Femenino", label: "Femenino" },
 ];
 
 export const SI_NO = [
@@ -30,4 +30,5 @@ export const VIVE_CON = [
 export const PREVISION_OPTIONS = [
   { value: "FONASA", label: "FONASA" },
   { value: "ISAPRE", label: "ISAPRE" },
+  { value: "Sin Prevision", label: "Sin Prevision"},
 ];

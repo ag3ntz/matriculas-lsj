@@ -1,0 +1,6 @@
+const CONFIG = {
+  SPREADSHEET_ID: "16BUOfP2vA6gJ3WKCtbXpa_xo_3b4cuHr50QLtBl2ne4",
+  TEMPLATE_DOC_ID: "1Gn6nD8MbKkYvk2FMWhvuewO31huD0G1ffFpC2Q9USKs",
+  PARENT_FOLDER_ID: "1-lqiztyGH5uSQz9FbyvIK9NBv8_fkozP",
+  SHEET_NAME: "Sheet1",
+};
