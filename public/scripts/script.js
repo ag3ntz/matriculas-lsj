@@ -192,10 +192,21 @@ function limpiarErrores() {
 }
 
 function setLoading(loading) {
+  const form = document.getElementById("formPrematricula");
   const btn = document.querySelector("button[type='submit']");
-  if (!btn) return;
+  const overlay = document.getElementById("loadingOverlay");
+
+  if (!form || !btn || !overlay) return;
+
+  form.classList.toggle("loading", loading);
+  overlay.classList.toggle("active", loading);
   btn.disabled = loading;
   btn.textContent = loading ? "Enviando..." : "Enviar formulario";
+
+  form.querySelectorAll("input, select, textarea, button").forEach((el) => {
+    if (el === btn) return;
+    el.toggleAttribute("disabled", loading);
+  });
 }
 
 async function enviarFormulario() {
