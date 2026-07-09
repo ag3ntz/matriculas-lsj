@@ -23,7 +23,7 @@ export const SAE_OPTIONS = [
 export const VIVE_CON = [
   { value: "Madre", label: "Madre" },
   { value: "Padre", label: "Padre" },
-  { value: "Ambos", label: "Ambos (Padre y Madre)" },
+  { value: "Ambos (Padre y Madre)", label: "Ambos (Padre y Madre)" },
   { value: "Otro", label: "Otro (Especificar)" },
 ];
 
