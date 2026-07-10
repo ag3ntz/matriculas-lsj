@@ -129,21 +129,21 @@ import {
     <section>
       <h2>6. Apoderado Suplente</h2>
       <div class="form-grid">
-        <InputField label="Nombre Completo" name="nombreSuplente" id="nombreSuplente" placeholder="Ej: Roberto Antonio Pérez Vásquez" autoFormat />
-        <RutInput label="RUN" name="rutSuplente" />
-        <InputField label="Parentesco" name="parentescoSuplente" placeholder="Ej: Hermano" autoFormat />
+        <InputField label="Nombre Completo" name="nombreSuplente" id="nombreSuplente" placeholder="Ej: Roberto Antonio Pérez Vásquez" autoFormat required />
+        <RutInput label="RUN" name="rutSuplente" required />
+        <InputField label="Parentesco" name="parentescoSuplente" placeholder="Ej: Hermano" autoFormat required />
       </div>
     </section>
 
     <div id="errorSummary" class="error-summary" style="display: none;" role="alert"></div>
 
     <button type="submit">Enviar formulario</button>
-
-    <div id="loadingOverlay" class="loading-overlay" aria-hidden="true">
-      <div class="spinner"></div>
-      <div class="loading-text">Enviando datos...</div>
-    </div>
   </form>
+
+  <footer class="footer">
+    <p>©2026 Liceo San José del Carmen. Todos los derechos reservados.</p>
+    <p>Desarrollado por Departamento Informática (Enlaces)</p>
+  </footer>
 </main>
 
 <script type="module" src="/scripts/script.js" is:inline></script>

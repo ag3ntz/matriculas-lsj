@@ -194,12 +194,9 @@ function limpiarErrores() {
 function setLoading(loading) {
   const form = document.getElementById("formPrematricula");
   const btn = document.querySelector("button[type='submit']");
-  const overlay = document.getElementById("loadingOverlay");
 
-  if (!form || !btn || !overlay) return;
+  if (!form || !btn) return;
 
-  form.classList.toggle("loading", loading);
-  overlay.classList.toggle("active", loading);
   btn.disabled = loading;
   btn.textContent = loading ? "Enviando..." : "Enviar formulario";
 
@@ -207,11 +204,17 @@ function setLoading(loading) {
     if (el === btn) return;
     el.toggleAttribute("disabled", loading);
   });
+
+  if (loading) {
+    Notiflix.Loading.circle({ backgroundColor: "rgba(0,0,0,0.1)" });
+  } else {
+    Notiflix.Loading.remove();
+  }
 }
 
 async function enviarFormulario() {
   if (!GAS_URL) {
-    alert("El GAS_URL no está configurado. Configúralo en public/scripts/script.js");
+    Notiflix.Notify.failure("GAS_URL no configurado");
     return;
   }
 
@@ -222,18 +225,31 @@ async function enviarFormulario() {
     const respuesta = await enviar(data);
 
     if (respuesta.status === "DUPLICATE") {
-      const confirmar = confirm(respuesta.message);
-      if (confirmar) {
-        data.force = true;
-        const respuesta2 = await enviar(data);
-        procesarRespuesta(respuesta2);
-      }
+      setLoading(false);
+      Notiflix.Confirm.show(
+        "Registro duplicado",
+        respuesta.message,
+        "Sí, enviar",
+        "Cancelar",
+        async () => {
+          setLoading(true);
+          data.force = true;
+          try {
+            const respuesta2 = await enviar(data);
+            procesarRespuesta(respuesta2);
+          } catch (err) {
+            Notiflix.Notify.failure(err.message || "Error de conexión");
+          } finally {
+            setLoading(false);
+          }
+        }
+      );
     } else {
       procesarRespuesta(respuesta);
+      setLoading(false);
     }
   } catch (err) {
-    alert("Error de conexión: " + err.message);
-  } finally {
+    Notiflix.Notify.failure(err.message || "Error de conexión");
     setLoading(false);
   }
 }
@@ -255,12 +271,17 @@ async function enviar(data) {
 
 function procesarRespuesta(respuesta) {
   if (respuesta.status === "OK") {
-    const msg = `✅ Matrícula registrada exitosamente.\n\nPDF generado:\n${respuesta.pdfUrl}`;
-    alert(msg);
-    document.getElementById("formPrematricula").reset();
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    Notiflix.Report.success(
+      "Matrícula registrada",
+      `PDF generado:\n${respuesta.pdfUrl}`,
+      "Aceptar",
+      () => {
+        document.getElementById("formPrematricula").reset();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    );
   } else if (respuesta.status === "ERROR") {
-    alert("❌ Error: " + respuesta.message);
+    Notiflix.Report.failure("Error", respuesta.message, "Aceptar");
   }
 }
 
@@ -279,6 +300,9 @@ function manejarSubmit(e) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  Notiflix.Notify.init({ position: "right-top", timeout: 4000 });
+  Notiflix.Confirm.init({ zindex: 9999 });
+
   configurarRut();
   calcularEdad();
   inicializarFormateoNombres();
