@@ -269,16 +269,31 @@ async function enviar(data) {
   return JSON.parse(text);
 }
 
+function mostrarPantallaExito() {
+  document.getElementById("formPrematricula").style.display = "none";
+  document.getElementById("postEnvio").style.display = "block";
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function reiniciarFormulario() {
+  document.getElementById("postEnvio").style.display = "none";
+  const form = document.getElementById("formPrematricula");
+  form.style.display = "block";
+  form.reset();
+  document.querySelectorAll(".input-valido, .input-invalido, .rutFeedback").forEach((el) => {
+    el.textContent = "";
+    el.classList.remove("input-valido", "input-invalido");
+  });
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
 function procesarRespuesta(respuesta) {
   if (respuesta.status === "OK") {
     Notiflix.Report.success(
       "Matrícula registrada",
       `PDF generado:\n${respuesta.pdfUrl}`,
       "Aceptar",
-      () => {
-        document.getElementById("formPrematricula").reset();
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
+      mostrarPantallaExito
     );
   } else if (respuesta.status === "ERROR") {
     Notiflix.Report.failure("Error", respuesta.message, "Aceptar");
@@ -321,4 +336,9 @@ document.addEventListener("DOMContentLoaded", () => {
   toggleField("movEscolar", "Si", "movEscolarContainer", "movEscolarInput");
 
   document.getElementById("formPrematricula").addEventListener("submit", manejarSubmit);
+
+  document.getElementById("btnOtraMatricula").addEventListener("click", reiniciarFormulario);
+  document.getElementById("btnSalir").addEventListener("click", () => {
+    window.location.href = "/";
+  });
 });
