@@ -115,7 +115,7 @@ function serializarFormulario() {
 
   for (const { select, detail } of condicionalesMantener) {
     if (!data[detail] || !data[detail].trim()) {
-      data[detail] = "-";
+      data[detail] = "------";
     }
   }
 
