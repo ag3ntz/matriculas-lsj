@@ -1,5 +1,5 @@
 ---
-import InputField from "./InputField.astro";
+import CampoEntrada from "./CampoEntrada.astro";
 
 interface Props {
   label: string;
@@ -18,11 +18,4 @@ const {
 } = Astro.props;
 ---
 
-<InputField
-  {label}
-  {name}
-  {id}
-  {required}
-  {placeholder}
-  dataTipo="rut"
-/>
+<CampoEntrada {label} {name} {id} {required} {placeholder} dataTipo="rut" />

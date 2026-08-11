@@ -1,7 +1,7 @@
 ---
-import InputField from "./InputField.astro";
-import SelectField from "./SelectField.astro";
-import RutInput from "./RutInput.astro";
+import CampoEntrada from "./CampoEntrada.astro";
+import CampoSelect from "./CampoSelect.astro";
+import CampoRut from "./CampoRut.astro";
 import SelectorComuna from "./SelectorComuna.astro";
 import SelectorEscolaridad from "./SelectorEscolaridad.astro";
 import CampoCondicional from "./CampoCondicional.astro";
@@ -11,31 +11,34 @@ import {
   CURSOS_REPITENCIA,
   COLEGIOS,
   NACIONALIDADES,
-  SEXO_OPTIONS,
+  SEXO_OPCIONES,
   SI_NO,
-  SAE_OPTIONS,
+  SAE_OPCIONES,
   VIVE_CON,
-  PREVISION_OPTIONS,
+  PREVISION_OPCIONES,
 } from "../data/index.js";
+
+const anioMatricula = new Date().getFullYear() + 1;
 ---
 
 <main class="container">
   <img id="logo" src="assets/img/picture3_new2.png" />
-  <h1>Ficha de Pre Matrícula - Año 2027</h1>
+  <h1>Ficha de Pre Matrícula - Año {anioMatricula}</h1>
   <h3>Liceo San José del Carmen</h3>
   <p class="intro">
-    Completa este formulario para iniciar el proceso de pre-matrícula.
-    Los campos con (<span class="required">*</span>) son obligatorios.
+    Completa este formulario para iniciar el proceso de pre-matrícula. Los
+    campos con (<span class="required">*</span>) son obligatorios.
   </p>
 
-  <form id="formPrematricula">
+  <form id="formularioPrematricula">
     <div class="form-grid">
-      <label>Selecciona un curso a prematricular:<span class="required">*</span></label>
+      <label
+        >Selecciona un curso a prematricular:<span class="required">*</span
+        ></label
+      >
       <select name="cursoMatricula" id="curso" required>
         <option value="" selected disabled>Seleccione un curso...</option>
-        {CURSOS.map((c) => (
-          <option value={c.value}>{c.label}</option>
-        ))}
+        {CURSOS.map((c) => <option value={c.value}>{c.label}</option>)}
       </select>
     </div>
 
@@ -43,24 +46,146 @@ import {
     <section>
       <h2>1. Datos del Alumno</h2>
       <div class="form-grid">
-        <RutInput label="RUN (Alumno)" name="rutAlumno" id="rutAlumno" required />
-        <InputField label="Nombres" name="nombresAlumno" id="nombresAlumno" required placeholder="Ej. Juan Pedro" autoFormat />
-        <InputField label="Apellido Paterno" name="apellidoPaterno" id="apellidoPaterno" required placeholder="Ej. Pérez" autoFormat />
-        <InputField label="Apellido Materno" name="apellidoMaterno" id="apellidoMaterno" required placeholder="Ej. Rodríguez" autoFormat />
-        <InputField label="Fecha de Nacimiento" name="fechaNacimiento" id="fechaNacimiento" type="date" required />
-        <InputField label="Edad" name="edad" id="edad" type="number" min={1} placeholder="Se calcula automaticamente" readonly required />
-        <SelectField label="Sexo" name="sexo" required options={SEXO_OPTIONS} />
-        <CampoCondicional label="Nacionalidad" selectName="nacionalidad" inputName="otraNacionalidad" inputLabel="Especifique nacionalidad" inputPlaceholder="Ingrese su nacionalidad" triggerValue="Otro" options={NACIONALIDADES} required />
-        <InputField label="Dirección" name="domicilio" required placeholder="Ej. Villa Nelson Cabrera, calle principal, #123" />
+        <CampoRut
+          label="RUN (Alumno)"
+          name="rutAlumno"
+          id="rutAlumno"
+          required
+        />
+        <CampoEntrada
+          label="Nombres"
+          name="nombresAlumno"
+          id="nombresAlumno"
+          required
+          placeholder="Ej. Juan Pedro"
+          autoFormato
+        />
+        <CampoEntrada
+          label="Apellido Paterno"
+          name="apellidoPaterno"
+          id="apellidoPaterno"
+          required
+          placeholder="Ej. Pérez"
+          autoFormato
+        />
+        <CampoEntrada
+          label="Apellido Materno"
+          name="apellidoMaterno"
+          id="apellidoMaterno"
+          required
+          placeholder="Ej. Rodríguez"
+          autoFormato
+        />
+        <CampoEntrada
+          label="Fecha de Nacimiento"
+          name="fechaNacimiento"
+          id="fechaNacimiento"
+          type="date"
+          required
+        />
+        <CampoEntrada
+          label="Edad"
+          name="edad"
+          id="edad"
+          type="number"
+          min={1}
+          placeholder="Se calcula automaticamente"
+          readonly
+          required
+        />
+        <CampoSelect
+          label="Sexo"
+          name="sexo"
+          required
+          options={SEXO_OPCIONES}
+        />
+        <CampoCondicional
+          etiqueta="Nacionalidad"
+          nombreSelect="nacionalidad"
+          nombreEntrada="nacionalidadDetalle"
+          etiquetaEntrada="Especifique nacionalidad"
+          placeholderEntrada="Ingrese su nacionalidad"
+          valorDisparador="Otro"
+          opciones={NACIONALIDADES}
+          obligatorio
+        />
+        <CampoEntrada
+          label="Dirección"
+          name="domicilio"
+          required
+          placeholder="Ej. Villa Nelson Cabrera, calle principal, #123"
+        />
         <SelectorComuna name="comuna" required />
-        <InputField label="Región" name="region" value="Libertador Bernardo O'Higgins" readonly required />
-        <CampoCondicional label="Vive con" selectName="viveCon" inputName="otraVivecon" inputLabel="Especifique con quien vive" inputPlaceholder="Ingrese con quien vive" triggerValue="Otro" options={VIVE_CON} required />
-        <CampoCondicional label="¿Pertenece a algún programa social?" selectName="programaSocial" inputName="otraProgramaSocial" inputLabel="Especifique el programa social" inputPlaceholder="Ingrese el programa social" triggerValue="Si" options={SI_NO} required />
-        <CampoCondicional label="¿Pertenece a alguna etnia?" selectName="etnia" inputName="otraEtnia" inputLabel="Especifique la etnia" inputPlaceholder="Ingrese la etnia" triggerValue="Si" options={SI_NO} required />
-        <SelectField label="¿Ha repetido algún curso?" name="repiteCurso" id="repiteCurso" required options={CURSOS_REPITENCIA} />
-        <SelectField label="¿Opta a clase de religión?" name="claseReligion" id="claseReligion" options={SI_NO} required />
-        <CampoCondicional label="Colegio de procedencia" selectName="colegioProcedencia" inputName="otroColegio" inputLabel="Especificar colegio" inputPlaceholder="Nombre del colegio" triggerValue="Otro" options={COLEGIOS} required inputRequired />
-        <SelectField label="Alumno cuenta con" name="SAE" id="alumnoSae" required options={SAE_OPTIONS} placeholder="Elija una opción..." />
+        <CampoEntrada
+          label="Región"
+          name="region"
+          value="Libertador Bernardo O'Higgins"
+          readonly
+          required
+        />
+        <CampoCondicional
+          etiqueta="Vive con"
+          nombreSelect="viveCon"
+          nombreEntrada="viveConDetalle"
+          etiquetaEntrada="Especifique con quien vive"
+          placeholderEntrada="Ingrese con quien vive"
+          valorDisparador="Otro"
+          opciones={VIVE_CON}
+          obligatorio
+        />
+        <CampoCondicional
+          etiqueta="¿Pertenece a algún programa social?"
+          nombreSelect="programaSocial"
+          nombreEntrada="programaSocialDetalle"
+          etiquetaEntrada="Especifique el programa social"
+          placeholderEntrada="Ingrese el programa social"
+          valorDisparador="Si"
+          opciones={SI_NO}
+          obligatorio
+        />
+        <CampoCondicional
+          etiqueta="¿Pertenece a alguna etnia?"
+          nombreSelect="etnia"
+          nombreEntrada="etniaDetalle"
+          etiquetaEntrada="Especifique la etnia"
+          placeholderEntrada="Ingrese la etnia"
+          valorDisparador="Si"
+          opciones={SI_NO}
+          obligatorio
+        />
+        <CampoSelect
+          label="¿Ha repetido algún curso?"
+          name="repiteCurso"
+          id="repiteCurso"
+          required
+          options={CURSOS_REPITENCIA}
+        />
+        <CampoSelect
+          label="¿Opta a clase de religión?"
+          name="claseReligion"
+          id="claseReligion"
+          options={SI_NO}
+          required
+        />
+        <CampoCondicional
+          etiqueta="Colegio de procedencia"
+          nombreSelect="colegioProcedencia"
+          nombreEntrada="colegioProcedenciaDetalle"
+          etiquetaEntrada="Especificar colegio"
+          placeholderEntrada="Nombre del colegio"
+          valorDisparador="Otro"
+          opciones={COLEGIOS}
+          obligatorio
+          entradaObligatoria
+        />
+        <CampoSelect
+          label="Alumno cuenta con"
+          name="sae"
+          id="sae"
+          required
+          options={SAE_OPCIONES}
+          placeholder="Elija una opción..."
+        />
       </div>
     </section>
 
@@ -68,15 +193,59 @@ import {
     <section>
       <h2>2. Datos del Apoderado</h2>
       <div class="form-grid">
-        <RutInput label="RUN (Apoderado)" name="rutApoderado" id="rutApoderado" required />
-        <InputField label="Nombre Completo" name="nombreApoderado" id="nombreApoderado" required placeholder="Ej. María Elena Vargas Pino" autoFormat />
-        <InputField label="Fecha de nacimiento" name="fechaNacApoderado" type="date" required />
-        <InputField label="Teléfono de contacto" name="telefonoApoderado" type="tel" required placeholder="Ej. 991234567" />
-        <InputField label="Correo electrónico" name="correoApoderado" type="email" required placeholder="Ej. correo@dominio.cl" />
-        <InputField label="Domicilio" name="domicilioApoderado" required placeholder="Ej. Villa Nelson Cabrera, Calle principal, #123" />
+        <CampoRut
+          label="RUN (Apoderado)"
+          name="rutApoderado"
+          id="rutApoderado"
+          required
+        />
+        <CampoEntrada
+          label="Nombre Completo"
+          name="nombreApoderado"
+          id="nombreApoderado"
+          required
+          placeholder="Ej. María Elena Vargas Pino"
+          autoFormato
+        />
+        <CampoEntrada
+          label="Fecha de nacimiento"
+          name="fechaNacApoderado"
+          type="date"
+          required
+        />
+        <CampoEntrada
+          label="Teléfono de contacto"
+          name="telefonoApoderado"
+          type="tel"
+          required
+          placeholder="Ej. 991234567"
+        />
+        <CampoEntrada
+          label="Correo electrónico"
+          name="correoApoderado"
+          type="email"
+          required
+          placeholder="Ej. correo@dominio.cl"
+        />
+        <CampoEntrada
+          label="Domicilio"
+          name="domicilioApoderado"
+          required
+          placeholder="Ej. Villa Nelson Cabrera, Calle principal, #123"
+        />
         <SelectorComuna name="comunaApoderado" required />
-        <SelectorEscolaridad name="escolaridadApoderado" id="escolaridadApoderado" required />
-        <InputField label="Profesión u oficio" name="profesionApoderado" id="profesionApoderado" required placeholder="Ej. Ingeniera Civil" />
+        <SelectorEscolaridad
+          name="escolaridadApoderado"
+          id="escolaridadApoderado"
+          required
+        />
+        <CampoEntrada
+          label="Profesión u oficio"
+          name="profesionApoderado"
+          id="profesionApoderado"
+          required
+          placeholder="Ej. Ingeniera Civil"
+        />
       </div>
     </section>
 
@@ -84,23 +253,87 @@ import {
     <section>
       <h2>3. Datos de los Padres</h2>
       <div class="form-grid">
-        <RutInput label="RUN del Padre" name="rutPadre" id="rutPadre" required/>
-        <InputField label="Nombre del Padre" name="nombrePadre" id="nombrePadre" placeholder="Ej. Juan Ricardo Pérez Huerta" required autoFormat />
-        <InputField label="Fecha de Nacimiento" name="fechaNacPadre" type="date" required />
-        <InputField label="Domicilio" name="domicilioPadre" required placeholder="Ej. Av. Siempre Viva 123" />
+        <CampoRut
+          label="RUN del Padre"
+          name="rutPadre"
+          id="rutPadre"
+          required
+        />
+        <CampoEntrada
+          label="Nombre del Padre"
+          name="nombrePadre"
+          id="nombrePadre"
+          placeholder="Ej. Juan Ricardo Pérez Huerta"
+          required
+          autoFormato
+        />
+        <CampoEntrada
+          label="Fecha de Nacimiento"
+          name="fechaNacPadre"
+          type="date"
+          required
+        />
+        <CampoEntrada
+          label="Domicilio"
+          name="domicilioPadre"
+          required
+          placeholder="Ej. Av. Siempre Viva 123"
+        />
         <SelectorComuna name="comunaPadre" id="comunaPadre" required />
-        <InputField label="Profesión u Oficio" name="profesionPadre" placeholder="Ej. Trabajador Agricola" required />
-        <SelectorEscolaridad name="escolaridadPadre" id="escolaridadPadre" label="Escolaridad" required />
+        <CampoEntrada
+          label="Profesión u Oficio"
+          name="profesionPadre"
+          placeholder="Ej. Trabajador Agricola"
+          required
+        />
+        <SelectorEscolaridad
+          name="escolaridadPadre"
+          id="escolaridadPadre"
+          label="Escolaridad"
+          required
+        />
       </div>
 
       <div class="form-grid">
-        <RutInput label="RUN de la Madre" name="rutMadre" id="rutMadre" required />
-        <InputField label="Nombre de la Madre" name="nombreMadre" id="nombreMadre" placeholder="Ej. Maria Teresa Perez Huerta" required autoFormat />
-        <InputField label="Fecha de Nacimiento" name="fechaNacMadre" type="date" required/>
-        <InputField label="Domicilio" name="domicilioMadre" required placeholder="Ej. Av. Siempre Viva 123" />
+        <CampoRut
+          label="RUN de la Madre"
+          name="rutMadre"
+          id="rutMadre"
+          required
+        />
+        <CampoEntrada
+          label="Nombre de la Madre"
+          name="nombreMadre"
+          id="nombreMadre"
+          placeholder="Ej. Maria Teresa Perez Huerta"
+          required
+          autoFormato
+        />
+        <CampoEntrada
+          label="Fecha de Nacimiento"
+          name="fechaNacMadre"
+          type="date"
+          required
+        />
+        <CampoEntrada
+          label="Domicilio"
+          name="domicilioMadre"
+          required
+          placeholder="Ej. Av. Siempre Viva 123"
+        />
         <SelectorComuna name="comunaMadre" id="comunaMadre" required />
-        <InputField label="Profesión u Oficio" name="profesionMadre" placeholder="Ej. Trabajadora Agricola" required />
-        <SelectorEscolaridad name="escolaridadMadre" id="escolaridadMadre" label="Escolaridad" required />
+        <CampoEntrada
+          label="Profesión u Oficio"
+          name="profesionMadre"
+          placeholder="Ej. Trabajadora Agricola"
+          required
+        />
+        <SelectorEscolaridad
+          name="escolaridadMadre"
+          id="escolaridadMadre"
+          label="Escolaridad"
+          required
+        />
       </div>
     </section>
 
@@ -108,12 +341,65 @@ import {
     <section>
       <h2>4. Salud del Alumno</h2>
       <div class="form-grid">
-        <CampoCondicional label="¿Ha estado en tratamiento médico?" selectName="tratamientoMedico" inputName="defTratMedico" inputLabel="Especifique el tratamiento" inputPlaceholder="Ingrese el tratamiento" triggerValue="Si" options={SI_NO} required inputRequired />
-        <CampoCondicional label="¿Pertenece a algún programa escolar?" selectName="programaEscolar" inputName="defProgramaEscolar" inputLabel="Especifique el programa" inputPlaceholder="Ingrese el programa" triggerValue="Si" options={SI_NO} required inputRequired />
-        <SelectField label="¿Posee antecedentes de trastornos de aprendizaje u otros?" name="trast_aprendizaje" id="trast_aprendizaje" required options={SI_NO} />
-        <CampoCondicional label="¿Es alérgico a medicamentos o alimentos?" selectName="alergiaMed" inputName="defAlergiaMed" inputLabel="Especifique alergia o remedio" inputPlaceholder="Especifique la alergia aqui" triggerValue="Si" options={SI_NO} required inputRequired />
-        <CampoCondicional label="¿Posee contraindicación médica para actividad física?" selectName="contraMedica" inputName="defContraMedica" inputLabel="Especifique contraindicación Médica" inputPlaceholder="Especifique diagnostico aqui" triggerValue="Si" options={SI_NO} required inputRequired />
-        <SelectField label="Previsión de Salud" name="prevision" id="previsionSalud" required options={PREVISION_OPTIONS} placeholder="Seleccione una opción" />
+        <CampoCondicional
+          etiqueta="¿Ha estado en tratamiento médico?"
+          nombreSelect="tratamientoMedico"
+          nombreEntrada="tratamientoMedicoDetalle"
+          etiquetaEntrada="Especifique el tratamiento"
+          placeholderEntrada="Ingrese el tratamiento"
+          valorDisparador="Si"
+          opciones={SI_NO}
+          obligatorio
+          entradaObligatoria
+        />
+        <CampoCondicional
+          etiqueta="¿Pertenece a algún programa escolar?"
+          nombreSelect="programaEscolar"
+          nombreEntrada="programaEscolarDetalle"
+          etiquetaEntrada="Especifique el programa"
+          placeholderEntrada="Ingrese el programa"
+          valorDisparador="Si"
+          opciones={SI_NO}
+          obligatorio
+          entradaObligatoria
+        />
+        <CampoSelect
+          label="¿Posee antecedentes de trastornos de aprendizaje u otros?"
+          name="trastornoAprendizaje"
+          id="trastornoAprendizaje"
+          required
+          options={SI_NO}
+        />
+        <CampoCondicional
+          etiqueta="¿Es alérgico a medicamentos o alimentos?"
+          nombreSelect="alergiaMed"
+          nombreEntrada="alergiaMedDetalle"
+          etiquetaEntrada="Especifique alergia o remedio"
+          placeholderEntrada="Especifique la alergia aqui"
+          valorDisparador="Si"
+          opciones={SI_NO}
+          obligatorio
+          entradaObligatoria
+        />
+        <CampoCondicional
+          etiqueta="¿Posee contraindicación médica para actividad física?"
+          nombreSelect="contraMedica"
+          nombreEntrada="contraMedicaDetalle"
+          etiquetaEntrada="Especifique contraindicación Médica"
+          placeholderEntrada="Especifique diagnostico aqui"
+          valorDisparador="Si"
+          opciones={SI_NO}
+          obligatorio
+          entradaObligatoria
+        />
+        <CampoSelect
+          label="Previsión de Salud"
+          name="prevision"
+          id="prevision"
+          required
+          options={PREVISION_OPCIONES}
+          placeholder="Seleccione una opción"
+        />
       </div>
     </section>
 
@@ -121,7 +407,17 @@ import {
     <section>
       <h2>5. Transporte Escolar</h2>
       <div class="form-grid">
-        <CampoCondicional label="¿Necesita movilización?" selectName="movEscolar" inputName="defMovEscolar" inputLabel="Especifique Sector" inputPlaceholder="Especifique sector para movilización" triggerValue="Si" options={SI_NO} required inputRequired />
+        <CampoCondicional
+          etiqueta="¿Necesita movilización?"
+          nombreSelect="movEscolar"
+          nombreEntrada="movEscolarDetalle"
+          etiquetaEntrada="Especifique Sector"
+          placeholderEntrada="Especifique sector para movilización"
+          valorDisparador="Si"
+          opciones={SI_NO}
+          obligatorio
+          entradaObligatoria
+        />
       </div>
     </section>
 
@@ -129,13 +425,32 @@ import {
     <section>
       <h2>6. Apoderado Suplente</h2>
       <div class="form-grid">
-        <InputField label="Nombre Completo" name="nombreSuplente" id="nombreSuplente" placeholder="Ej: Roberto Antonio Pérez Vásquez" autoFormat required />
-        <RutInput label="RUN" name="rutSuplente" required />
-        <InputField label="Parentesco" name="parentescoSuplente" placeholder="Ej: Hermano" autoFormat required />
+        <CampoEntrada
+          label="Nombre Completo"
+          name="nombreSuplente"
+          id="nombreSuplente"
+          placeholder="Ej: Roberto Antonio Pérez Vásquez"
+          autoFormato
+          required
+        />
+        <CampoRut label="RUN" name="rutSuplente" required />
+        <CampoEntrada
+          label="Parentesco"
+          name="parentescoSuplente"
+          placeholder="Ej: Hermano"
+          autoFormato
+          required
+        />
       </div>
     </section>
 
-    <div id="errorSummary" class="error-summary" style="display: none;" role="alert"></div>
+    <div
+      id="resumenErrores"
+      class="error-summary"
+      style="display: none;"
+      role="alert"
+    >
+    </div>
 
     <button type="submit">Enviar formulario</button>
   </form>
@@ -145,7 +460,9 @@ import {
     <h2>Matrícula registrada exitosamente</h2>
     <p>¿Necesita ingresar otra matrícula?</p>
     <div class="post-envio-buttons">
-      <button id="btnOtraMatricula" class="btn-primary">Sí, ingresar otra</button>
+      <button id="btnOtraMatricula" class="btn-primary"
+        >Sí, ingresar otra</button
+      >
       <button id="btnSalir" class="btn-secondary">No, salir</button>
     </div>
   </div>
@@ -156,4 +473,4 @@ import {
   </footer>
 </main>
 
-<script type="module" src="/scripts/script.js" is:inline></script>
+<script src="../scripts/formulario.ts"></script>

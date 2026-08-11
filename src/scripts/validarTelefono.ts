@@ -1,18 +1,19 @@
-export function formatearTelefono(valor) {
+export function formatearTelefono(valor: string): string {
   return valor.replace(/[^+\d]/g, "");
 }
 
-export function validarTelefono(valor) {
+export function validarTelefono(valor: string): boolean {
   const limpio = formatearTelefono(valor);
   return /^(\+?56)?9\d{8}$/.test(limpio);
 }
 
-export function inicializarValidacionTelefono() {
-  const telInputs = document.querySelectorAll("input[type='tel']");
+export function inicializarValidacionTelefono(): void {
+  const telInputs =
+    document.querySelectorAll<HTMLInputElement>("input[type='tel']");
 
   telInputs.forEach((input) => {
     const feedback = document.createElement("div");
-    feedback.classList.add("telFeedback");
+    feedback.classList.add("feedback-tel");
     input.insertAdjacentElement("afterend", feedback);
 
     input.addEventListener("input", () => {

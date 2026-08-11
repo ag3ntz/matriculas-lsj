@@ -3,14 +3,14 @@ interface Props {
   label: string;
   name: string;
   id?: string;
-  type?: string;
+  type?: "text" | "email" | "tel" | "date" | "number" | "password" | "hidden";
   required?: boolean;
   placeholder?: string;
   readonly?: boolean;
   disabled?: boolean;
   min?: number;
   value?: string;
-  autoFormat?: boolean;
+  autoFormato?: boolean;
   dataTipo?: string;
 }
 
@@ -25,7 +25,7 @@ const {
   disabled = false,
   min,
   value,
-  autoFormat = false,
+  autoFormato = false,
   dataTipo,
 } = Astro.props;
 ---
@@ -44,6 +44,6 @@ const {
     {value}
     data-tipo={dataTipo}
     aria-required={required || undefined}
-    class:list={{ "formato-nombre": autoFormat }}
+    class:list={{ "formato-nombre": autoFormato }}
   />
 </label>

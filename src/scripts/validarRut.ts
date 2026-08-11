@@ -1,8 +1,8 @@
-export function limpiarRut(rut) {
+export function limpiarRut(rut: string): string {
   return rut.replace(/[^0-9kK]/g, "").toUpperCase();
 }
 
-export function formatearRut(rut) {
+export function formatearRut(rut: string): string {
   rut = limpiarRut(rut);
 
   if (rut.length <= 1) return rut;
@@ -21,7 +21,7 @@ export function formatearRut(rut) {
   return cuerpoFormateado + "-" + dv;
 }
 
-export function validarRut(rut) {
+export function validarRut(rut: string): boolean {
   rut = limpiarRut(rut);
   if (rut.length < 8) return false;
 
@@ -36,8 +36,9 @@ export function validarRut(rut) {
     multiplo = multiplo < 7 ? multiplo + 1 : 2;
   }
 
-  let dvEsperado = 11 - (suma % 11);
-  dvEsperado = dvEsperado === 11 ? "0" : dvEsperado === 10 ? "K" : dvEsperado.toString();
+  let dvEsperado: string | number = 11 - (suma % 11);
+  dvEsperado =
+    dvEsperado === 11 ? "0" : dvEsperado === 10 ? "K" : dvEsperado.toString();
 
   return dv === dvEsperado;
 }

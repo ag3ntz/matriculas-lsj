@@ -1,5 +1,5 @@
 ---
-import SelectField from "./SelectField.astro";
+import CampoSelect from "./CampoSelect.astro";
 import { ESCOLARIDAD } from "../data/escolaridad.js";
 
 interface Props {
@@ -19,7 +19,7 @@ const {
 const options = ESCOLARIDAD.map((e) => ({ value: e, label: e }));
 ---
 
-<SelectField
+<CampoSelect
   {label}
   {name}
   {id}

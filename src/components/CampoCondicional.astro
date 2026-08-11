@@ -1,42 +1,59 @@
 ---
 interface Props {
-  label: string;
-  selectName: string;
-  inputName: string;
-  inputLabel: string;
-  inputPlaceholder?: string;
-  triggerValue: string;
-  options: Array<{ value: string; label: string }>;
-  required?: boolean;
-  inputRequired?: boolean;
+  etiqueta: string;
+  nombreSelect: string;
+  nombreEntrada: string;
+  etiquetaEntrada: string;
+  placeholderEntrada?: string;
+  valorDisparador: string;
+  opciones: Array<{ value: string; label: string }>;
+  obligatorio?: boolean;
+  entradaObligatoria?: boolean;
 }
 
 const {
-  label,
-  selectName,
-  inputName,
-  inputLabel,
-  inputPlaceholder = "",
-  triggerValue,
-  options,
-  required = false,
-  inputRequired = false,
+  etiqueta,
+  nombreSelect,
+  nombreEntrada,
+  etiquetaEntrada,
+  placeholderEntrada = "",
+  valorDisparador,
+  opciones,
+  obligatorio = false,
+  entradaObligatoria = false,
 } = Astro.props;
 
-const containerId = `${selectName}Container`;
-const inputId = `${selectName}Input`;
+const contenedorId = `${nombreSelect}Contenedor`;
+const entradaId = `${nombreSelect}Entrada`;
 ---
 
-<label>
-  {label}{required && <span class="required">*</span>}
-  <select name={selectName} id={selectName} required={required}>
+<div>
+  <label for={nombreSelect}>
+    {etiqueta}{obligatorio && <span class="required">*</span>}
+  </label>
+  <select
+    name={nombreSelect}
+    id={nombreSelect}
+    required={obligatorio}
+    aria-required={obligatorio || undefined}
+    data-valor-disparador={valorDisparador}
+  >
     <option value="" selected disabled>Seleccione una opción...</option>
-    {options.map((o) => (
-      <option value={o.value}>{o.label}</option>
-    ))}
+    {opciones.map((o) => <option value={o.value}>{o.label}</option>)}
   </select>
-  <div id={containerId} style="display: none; margin-top: 10px;">
-    <label for={inputId}>{inputLabel}{required && <span class="required">*</span>}</label>
-    <input type="text" id={inputId} name={inputName} placeholder={inputPlaceholder} required={inputRequired} />
+  <div id={contenedorId} style="display: none; margin-top: 10px;">
+    <label for={entradaId}
+      >{etiquetaEntrada}{
+        entradaObligatoria && <span class="required">*</span>
+      }</label
+    >
+    <input
+      type="text"
+      id={entradaId}
+      name={nombreEntrada}
+      placeholder={placeholderEntrada}
+      required={entradaObligatoria}
+      aria-required={entradaObligatoria || undefined}
+    />
   </div>
-</label>
+</div>

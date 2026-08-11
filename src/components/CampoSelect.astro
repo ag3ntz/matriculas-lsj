@@ -29,8 +29,6 @@ const {
   {label}{required && <span class="required">*</span>}
   <select {name} {id} required={required} {disabled}>
     <option value="" selected disabled>{placeholder}</option>
-    {options.map((opt) => (
-      <option value={opt.value}>{opt.label}</option>
-    ))}
+    {options.map((opt) => <option value={opt.value}>{opt.label}</option>)}
   </select>
 </label>

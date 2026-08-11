@@ -1,18 +1,26 @@
-export function validarCorreo() {
-  const correo = document.querySelector('input[name="correoApoderado"]');
+export function esCorreoValido(correo: string | null | undefined): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(correo || ""));
+}
+
+export function validarCorreo(): void {
+  const correo = document.querySelector<HTMLInputElement>(
+    'input[name="correoApoderado"]',
+  );
 
   if (!correo) return;
 
   const feedback = document.createElement("div");
-  feedback.classList.add("correoFeedback");
+  feedback.classList.add("feedback-correo");
   correo.insertAdjacentElement("afterend", feedback);
 
   correo.addEventListener("input", () => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const valido = regex.test(correo.value);
+    const valido = esCorreoValido(correo.value);
 
     correo.classList.toggle("input-valido", valido);
-    correo.classList.toggle("input-invalido", !valido && correo.value.length > 0);
+    correo.classList.toggle(
+      "input-invalido",
+      !valido && correo.value.length > 0,
+    );
 
     if (correo.value.length === 0) {
       feedback.textContent = "";

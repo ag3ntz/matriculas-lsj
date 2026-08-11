@@ -5,8 +5,14 @@ export const COLEGIOS = [
   { value: "Escuela de Lenguaje Arbol", label: "Escuela de Lenguaje Arbol" },
   { value: "Escuela de Lenguaje Alun", label: "Escuela de Lenguaje Alun" },
   { value: "Escuela Jorge Errázuriz", label: "Escuela Jorge Errázuriz" },
-  { value: "Escuela Margot Loyola Palacios", label: "Escuela Margot Loyola Palacios" },
-  { value: "Escuela Rebeca Cádiz Valenzuela", label: "Escuela Rebeca Cádiz Valenzuela" },
+  {
+    value: "Escuela Margot Loyola Palacios",
+    label: "Escuela Margot Loyola Palacios",
+  },
+  {
+    value: "Escuela Rebeca Cádiz Valenzuela",
+    label: "Escuela Rebeca Cádiz Valenzuela",
+  },
   { value: "Escuela Santa Matilde", label: "Escuela Santa Matilde" },
   { value: "Otro", label: "Otro (Especificar)" },
 ];

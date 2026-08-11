@@ -1,20 +1,34 @@
 ---
 import "../styles/styles.css";
 import FormularioPrematricula from "../components/FormularioPrematricula.astro";
+
+const recaptchaSiteKey = import.meta.env.PROD
+  ? import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY
+  : "";
 ---
 
 <html lang="es">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Matriculas LSJdelC</title>
-		<script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.7/dist/notiflix-aio-3.2.7.min.js"></script>
-	</head>
-	<body>
-		<FormularioPrematricula/>
-	</body>
-	
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Matriculas LSJdelC</title>
+    {
+      recaptchaSiteKey && (
+        <script
+          src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`}
+          async
+          defer
+        />
+      )
+    }
+    <script
+      src="https://cdn.jsdelivr.net/npm/notiflix@3.2.7/dist/notiflix-aio-3.2.7.min.js"
+    ></script>
+  </head>
+  <body>
+    <FormularioPrematricula />
+  </body>
 </html>

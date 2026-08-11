@@ -1,5 +1,5 @@
 ---
-import SelectField from "./SelectField.astro";
+import CampoSelect from "./CampoSelect.astro";
 import { COMUNAS } from "../data/comunas.js";
 
 interface Props {
@@ -9,17 +9,12 @@ interface Props {
   label?: string;
 }
 
-const {
-  name,
-  id = name,
-  required = false,
-  label = "Comuna",
-} = Astro.props;
+const { name, id = name, required = false, label = "Comuna" } = Astro.props;
 
 const options = COMUNAS.map((c) => ({ value: c, label: c }));
 ---
 
-<SelectField
+<CampoSelect
   {label}
   {name}
   {id}
