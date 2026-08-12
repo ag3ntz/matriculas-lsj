@@ -130,6 +130,94 @@ function calcularEdad() {
   });
 }
 
+const MAPEO_APODERADO_A_PADRE: Record<string, string> = {
+  rutApoderado: "rutPadre",
+  nombreApoderado: "nombrePadre",
+  fechaNacApoderado: "fechaNacPadre",
+  domicilioApoderado: "domicilioPadre",
+  comunaApoderado: "comunaPadre",
+  profesionApoderado: "profesionPadre",
+  escolaridadApoderado: "escolaridadPadre",
+};
+
+const MAPEO_APODERADO_A_MADRE: Record<string, string> = {
+  rutApoderado: "rutMadre",
+  nombreApoderado: "nombreMadre",
+  fechaNacApoderado: "fechaNacMadre",
+  domicilioApoderado: "domicilioMadre",
+  comunaApoderado: "comunaMadre",
+  profesionApoderado: "profesionMadre",
+  escolaridadApoderado: "escolaridadMadre",
+};
+
+let limpiarSincronizacionApoderado: (() => void) | null = null;
+
+function configurarSincronizacionApoderado() {
+  const selector = document.getElementById(
+    "apoderadoOrigen",
+  ) as HTMLSelectElement | null;
+  if (!selector) return;
+
+  selector.addEventListener("change", () => {
+    limpiarSincronizacionApoderado?.();
+
+    if (selector.value === "Padre") {
+      aplicarSincronizacionApoderado(MAPEO_APODERADO_A_PADRE);
+    } else if (selector.value === "Madre") {
+      aplicarSincronizacionApoderado(MAPEO_APODERADO_A_MADRE);
+    }
+  });
+}
+
+function aplicarSincronizacionApoderado(mapeo: Record<string, string>) {
+  copiarDesdeApoderado(mapeo);
+
+  const listeners: Array<{
+    el: HTMLInputElement;
+    fn: () => void;
+  }> = [];
+
+  for (const [origen, destino] of Object.entries(mapeo)) {
+    const elOrigen = document.getElementById(origen) as HTMLInputElement | null;
+    if (!elOrigen) continue;
+
+    const fn = () => {
+      const elDestino = document.getElementById(destino) as
+        HTMLInputElement | HTMLSelectElement | null;
+      if (elDestino) elDestino.value = elOrigen.value;
+    };
+
+    elOrigen.addEventListener("input", fn);
+    elOrigen.addEventListener("change", fn);
+    listeners.push({ el: elOrigen, fn });
+  }
+
+  limpiarSincronizacionApoderado = () => {
+    for (const { el, fn } of listeners) {
+      el.removeEventListener("input", fn);
+      el.removeEventListener("change", fn);
+    }
+    limpiarSincronizacionApoderado = null;
+  };
+}
+
+function copiarDesdeApoderado(mapeo: Record<string, string>) {
+  for (const [origen, destino] of Object.entries(mapeo)) {
+    const elOrigen = document.getElementById(origen) as HTMLInputElement | null;
+    const elDestino = document.getElementById(destino) as
+      HTMLInputElement | HTMLSelectElement | null;
+    if (elOrigen && elDestino) elDestino.value = elOrigen.value;
+  }
+}
+
+function restablecerSincronizacionApoderado() {
+  limpiarSincronizacionApoderado?.();
+  const selector = document.getElementById(
+    "apoderadoOrigen",
+  ) as HTMLSelectElement | null;
+  if (selector) selector.value = "";
+}
+
 function serializarFormulario(): DatosFormulario {
   const form = document.getElementById(
     "formularioPrematricula",
@@ -377,6 +465,7 @@ function reiniciarFormulario() {
   if (!form) return;
   form.style.display = "block";
   form.reset();
+  restablecerSincronizacionApoderado();
   document
     .querySelectorAll(
       ".input-valido, .input-invalido, .feedback-rut, .feedback-correo, .feedback-tel",
@@ -421,6 +510,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   configurarRut();
   calcularEdad();
+  configurarSincronizacionApoderado();
   inicializarFormateoNombres();
   validarCorreo();
   inicializarValidacionTelefono();

@@ -193,6 +193,14 @@ const anioMatricula = new Date().getFullYear() + 1;
     <section>
       <h2>2. Datos del Apoderado</h2>
       <div class="form-grid">
+        <label>¿El apoderado es también el padre o la madre?</label>
+        <select name="apoderadoOrigen" id="apoderadoOrigen">
+          <option value="" selected>No, ingresar manualmente</option>
+          <option value="Padre">Sí, el apoderado es el Padre</option>
+          <option value="Madre">Sí, el apoderado es la Madre</option>
+        </select>
+      </div>
+      <div class="form-grid">
         <CampoRut
           label="RUN (Apoderado)"
           name="rutApoderado"
