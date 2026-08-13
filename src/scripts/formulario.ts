@@ -161,10 +161,30 @@ function configurarSincronizacionApoderado() {
   selector.addEventListener("change", () => {
     limpiarSincronizacionApoderado?.();
 
+    const togglePadre = document.getElementById(
+      "datoPadre",
+    ) as HTMLSelectElement | null;
+    const toggleMadre = document.getElementById(
+      "datoMadre",
+    ) as HTMLSelectElement | null;
+
+    if (togglePadre) togglePadre.disabled = false;
+    if (toggleMadre) toggleMadre.disabled = false;
+
     if (selector.value === "Padre") {
       aplicarSincronizacionApoderado(MAPEO_APODERADO_A_PADRE);
+      if (togglePadre) {
+        togglePadre.value = "Si";
+        togglePadre.disabled = true;
+      }
+      establecerDisponibilidadProgenitor(CAMPOS_PADRE, true);
     } else if (selector.value === "Madre") {
       aplicarSincronizacionApoderado(MAPEO_APODERADO_A_MADRE);
+      if (toggleMadre) {
+        toggleMadre.value = "Si";
+        toggleMadre.disabled = true;
+      }
+      establecerDisponibilidadProgenitor(CAMPOS_MADRE, true);
     }
   });
 }
@@ -218,6 +238,77 @@ function restablecerSincronizacionApoderado() {
   if (selector) selector.value = "";
 }
 
+const CAMPOS_PADRE = [
+  "rutPadre",
+  "nombrePadre",
+  "fechaNacPadre",
+  "domicilioPadre",
+  "comunaPadre",
+  "profesionPadre",
+  "escolaridadPadre",
+];
+
+const CAMPOS_MADRE = [
+  "rutMadre",
+  "nombreMadre",
+  "fechaNacMadre",
+  "domicilioMadre",
+  "comunaMadre",
+  "profesionMadre",
+  "escolaridadMadre",
+];
+
+const MARCADOR_SIN_DATOS = "SIN DATOS";
+
+function establecerDisponibilidadProgenitor(
+  campos: string[],
+  disponible: boolean,
+) {
+  for (const campo of campos) {
+    const el = document.getElementById(campo) as
+      HTMLInputElement | HTMLSelectElement | null;
+    if (el) el.disabled = !disponible;
+  }
+}
+
+function configurarTogglesDatosPadres() {
+  const togglePadre = document.getElementById(
+    "datoPadre",
+  ) as HTMLSelectElement | null;
+  const toggleMadre = document.getElementById(
+    "datoMadre",
+  ) as HTMLSelectElement | null;
+
+  togglePadre?.addEventListener("change", () => {
+    establecerDisponibilidadProgenitor(
+      CAMPOS_PADRE,
+      togglePadre.value !== "No",
+    );
+  });
+  toggleMadre?.addEventListener("change", () => {
+    establecerDisponibilidadProgenitor(
+      CAMPOS_MADRE,
+      toggleMadre.value !== "No",
+    );
+  });
+}
+
+function restablecerTogglesPadres() {
+  for (const [toggleId, campos] of [
+    ["datoPadre", CAMPOS_PADRE],
+    ["datoMadre", CAMPOS_MADRE],
+  ] as const) {
+    const toggle = document.getElementById(
+      toggleId,
+    ) as HTMLSelectElement | null;
+    if (toggle) {
+      toggle.disabled = false;
+      toggle.value = "Si";
+    }
+    establecerDisponibilidadProgenitor(campos, true);
+  }
+}
+
 function serializarFormulario(): DatosFormulario {
   const form = document.getElementById(
     "formularioPrematricula",
@@ -260,6 +351,17 @@ function serializarFormulario(): DatosFormulario {
     }
   }
 
+  for (const [toggle, campos] of [
+    ["datoPadre", CAMPOS_PADRE],
+    ["datoMadre", CAMPOS_MADRE],
+  ] as const) {
+    if (datos[toggle] === "No") {
+      for (const campo of campos) {
+        datos[campo] = MARCADOR_SIN_DATOS;
+      }
+    }
+  }
+
   for (const clave of Object.keys(datos)) {
     if (
       (clave.startsWith("fechaNac") || clave === "fechaNacimiento") &&
@@ -286,6 +388,7 @@ function validarFormulario(): ErrorCampo[] {
   document
     .querySelectorAll<HTMLInputElement>("[data-tipo='rut']")
     .forEach((el) => {
+      if (el.disabled) return;
       if (el.value && !validarRut(limpiarRut(el.value))) {
         errores.push({ campo: el, msg: "RUT inválido" });
       }
@@ -466,6 +569,7 @@ function reiniciarFormulario() {
   form.style.display = "block";
   form.reset();
   restablecerSincronizacionApoderado();
+  restablecerTogglesPadres();
   document
     .querySelectorAll(
       ".input-valido, .input-invalido, .feedback-rut, .feedback-correo, .feedback-tel",
@@ -511,6 +615,7 @@ document.addEventListener("DOMContentLoaded", () => {
   configurarRut();
   calcularEdad();
   configurarSincronizacionApoderado();
+  configurarTogglesDatosPadres();
   inicializarFormateoNombres();
   validarCorreo();
   inicializarValidacionTelefono();

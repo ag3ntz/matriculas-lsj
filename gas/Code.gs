@@ -170,6 +170,29 @@ function validarTelefonoGAS(telefono) {
 function validarDatos(data) {
   const errores = [];
 
+  const camposPadre = [
+    "rutPadre",
+    "nombrePadre",
+    "fechaNacPadre",
+    "domicilioPadre",
+    "comunaPadre",
+    "profesionPadre",
+    "escolaridadPadre",
+  ];
+
+  const camposMadre = [
+    "rutMadre",
+    "nombreMadre",
+    "fechaNacMadre",
+    "domicilioMadre",
+    "comunaMadre",
+    "profesionMadre",
+    "escolaridadMadre",
+  ];
+
+  const sinDatosPadre = data.datoPadre === "No";
+  const sinDatosMadre = data.datoMadre === "No";
+
   const camposObligatorios = [
     "cursoMatricula",
     "rutAlumno",
@@ -226,6 +249,12 @@ function validarDatos(data) {
   ];
 
   for (const campo of camposObligatorios) {
+    if (
+      (sinDatosPadre && camposPadre.indexOf(campo) !== -1) ||
+      (sinDatosMadre && camposMadre.indexOf(campo) !== -1)
+    ) {
+      continue;
+    }
     if (!data[campo] || !String(data[campo]).trim()) {
       errores.push("'" + campo + "' es obligatorio");
     }
@@ -239,6 +268,12 @@ function validarDatos(data) {
     "rutSuplente",
   ];
   for (const campo of ruts) {
+    if (
+      (sinDatosPadre && campo === "rutPadre") ||
+      (sinDatosMadre && campo === "rutMadre")
+    ) {
+      continue;
+    }
     if (data[campo] && !validarRutGAS(data[campo])) {
       errores.push("RUN inválido en '" + campo + "'");
     }
@@ -337,6 +372,8 @@ function getHeaders() {
     "nombreSuplente",
     "rutSuplente",
     "parentescoSuplente",
+    "datoPadre",
+    "datoMadre",
     "pdfUrl",
   ];
 }

@@ -261,6 +261,13 @@ const anioMatricula = new Date().getFullYear() + 1;
     <section>
       <h2>3. Datos de los Padres</h2>
       <div class="form-grid">
+        <label>¿Se dispone de los datos del padre?</label>
+        <select name="datoPadre" id="datoPadre">
+          <option value="Si" selected>Sí, se dispone de sus datos</option>
+          <option value="No">No, no se dispone de sus datos</option>
+        </select>
+      </div>
+      <div class="form-grid">
         <CampoRut
           label="RUN del Padre"
           name="rutPadre"
@@ -300,6 +307,14 @@ const anioMatricula = new Date().getFullYear() + 1;
           label="Escolaridad"
           required
         />
+      </div>
+
+      <div class="form-grid">
+        <label>¿Se dispone de los datos de la madre?</label>
+        <select name="datoMadre" id="datoMadre">
+          <option value="Si" selected>Sí, se dispone de sus datos</option>
+          <option value="No">No, no se dispone de sus datos</option>
+        </select>
       </div>
 
       <div class="form-grid">
