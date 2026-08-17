@@ -6,4 +6,5 @@ const CONFIG = {
   RECAPTCHA_SECRET: "",
   RECAPTCHA_MIN_SCORE: 0.5,
   REQUIRE_RECAPTCHA: false,
+  FECHA_FIRMA: "15 de septiembre de 2026",
 };

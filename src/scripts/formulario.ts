@@ -585,7 +585,7 @@ function procesarRespuesta(respuesta: RespuestaGAS) {
   if (respuesta.estado === "OK") {
     Notiflix.Report.success(
       "Matrícula registrada",
-      `PDF generado:\n${respuesta.pdfUrl ?? ""}`,
+      "Se ha enviado un correo de confirmación a su dirección de contacto.",
       "Aceptar",
       mostrarPantallaExito,
     );

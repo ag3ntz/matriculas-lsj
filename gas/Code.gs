@@ -70,6 +70,106 @@ function doPost(e) {
       sheet.getRange(row, pdfColIndex).setValue(pdfUrl);
     }
 
+    if (data.correoApoderado) {
+      try {
+        var anioMatricula = new Date().getFullYear() + 1;
+        var nombreCompleto = [
+          data.nombresAlumno || "",
+          data.apellidoPaterno || "",
+          data.apellidoMaterno || "",
+        ]
+          .filter(Boolean)
+          .join(" ");
+
+        var asunto =
+          "PreMatrícula de " + nombreCompleto + " registrada correctamente";
+
+        var cuerpoPlano = [
+          "Estimado/a Apoderado/a " + (data.nombreApoderado || "") + ",",
+          "",
+          "Informamos que la Pre-Matrícula del estudiante " + nombreCompleto + " ha sido registrada correctamente.",
+          "",
+          "Curso: " + (data.cursoMatricula || ""),
+          "Año: " + anioMatricula,
+          "",
+          "Debe acercarse al establecimiento el día " + CONFIG.FECHA_FIRMA + " para firmar el documento de forma presencial.",
+          "",
+          "Este correo fue generado automáticamente.",
+          "",
+          "Saludos cordiales.",
+          "Liceo San José del Carmen",
+        ].join("\n");
+
+        var COLOR_PRIMARY = "#1a3d7c";
+        var COLOR_ACCENT = "#007acc";
+        var COLOR_BG = "#f3f6f9";
+        var COLOR_BORDER = "#e0e0e0";
+
+        var html = [
+          '<!DOCTYPE html><html><head><meta charset="utf-8"></head>',
+          '<body style="margin:0;padding:0;background-color:' + COLOR_BG + ';font-family:\'Segoe UI\',Roboto,Arial,sans-serif;">',
+          '<table width="100%" cellpadding="0" cellspacing="0" style="background-color:' + COLOR_BG + ';padding:30px 0;">',
+          '<tr><td align="center">',
+          '<table width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08);">',
+
+          // Header
+          '<tr><td style="background-color:' + COLOR_PRIMARY + ';padding:25px 30px;text-align:center;">',
+          '<h1 style="margin:0;color:#ffffff;font-size:22px;font-weight:600;">Liceo San José del Carmen</h1>',
+          '<p style="margin:6px 0 0;color:#b0c4de;font-size:13px;">Pre-Matrícula ' + anioMatricula + '</p>',
+          '</td></tr>',
+
+          // Body
+          '<tr><td style="padding:30px;">',
+
+          '<p style="margin:0 0 18px;color:#333;font-size:15px;line-height:1.6;">',
+          'Estimado/a Apoderado/a <strong>' + (data.nombreApoderado || "") + '</strong>:</p>',
+
+          '<p style="margin:0 0 20px;color:#333;font-size:15px;line-height:1.6;">',
+          'Informamos que la <strong>Pre-Matrícula</strong> del estudiante <strong>' + nombreCompleto + '</strong> ha sido registrada correctamente.</p>',
+
+          // Data table
+          '<table width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 20px;border:1px solid ' + COLOR_BORDER + ';border-radius:6px;">',
+          '<tr style="background-color:' + COLOR_PRIMARY + ';">',
+          '<td style="padding:10px 15px;color:#ffffff;font-weight:600;font-size:13px;">Estudiante</td>',
+          '<td style="padding:10px 15px;color:#ffffff;font-weight:600;font-size:13px;">Curso</td>',
+          '<td style="padding:10px 15px;color:#ffffff;font-weight:600;font-size:13px;">Año</td>',
+          '</tr>',
+          '<tr>',
+          '<td style="padding:10px 15px;color:#333;font-size:14px;border-bottom:1px solid ' + COLOR_BORDER + ';">' + nombreCompleto + '</td>',
+          '<td style="padding:10px 15px;color:#333;font-size:14px;border-bottom:1px solid ' + COLOR_BORDER + ';">' + (data.cursoMatricula || "") + '</td>',
+          '<td style="padding:10px 15px;color:#333;font-size:14px;">' + anioMatricula + '</td>',
+          '</tr>',
+          '</table>',
+
+          // Signing date highlight
+          '<table width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 20px;">',
+          '<tr><td style="background-color:#e8f4fd;border-left:4px solid ' + COLOR_ACCENT + ';padding:15px;border-radius:0 6px 6px 0;">',
+          '<p style="margin:0;color:#1a3d7c;font-size:14px;line-height:1.6;">',
+          'Debe acercarse al establecimiento el día <strong>' + CONFIG.FECHA_FIRMA + '</strong> para firmar el documento de forma presencial.</p>',
+          '</td></tr>',
+          '</table>',
+
+          '<p style="margin:0 0 10px;color:#888;font-size:12px;">Este correo fue generado automáticamente.</p>',
+
+          '</td></tr>',
+
+          // Footer
+          '<tr><td style="background-color:#f8f9fb;border-top:1px solid ' + COLOR_BORDER + ';padding:20px 30px;text-align:center;">',
+          '<p style="margin:0 0 4px;color:#1a3d7c;font-size:14px;font-weight:600;">Saludos cordiales,</p>',
+          '<p style="margin:0;color:#555;font-size:13px;">Liceo San José del Carmen</p>',
+          '</td></tr>',
+
+          '</table></td></tr></table></body></html>',
+        ].join("\n");
+
+        GmailApp.sendEmail(data.correoApoderado, asunto, cuerpoPlano, {
+          htmlBody: html,
+        });
+      } catch (emailErr) {
+        console.error("Error enviando correo de confirmación:", emailErr);
+      }
+    }
+
     return respond({
       estado: "OK",
       pdfUrl: pdfUrl,
